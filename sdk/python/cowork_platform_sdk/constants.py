@@ -5,6 +5,7 @@ from typing import Final
 # --- Error Codes ---
 # Machine-readable codes used in ErrorResponse across all services.
 
+
 class ErrorCode:
     INVALID_REQUEST: Final = "INVALID_REQUEST"
     UNAUTHORIZED: Final = "UNAUTHORIZED"
@@ -31,14 +32,17 @@ class ErrorCode:
 # --- Retryable Error Codes ---
 # Errors where the client should retry with backoff.
 
-RETRYABLE_ERROR_CODES: Final[frozenset[str]] = frozenset({
-    ErrorCode.RATE_LIMITED,
-    ErrorCode.INTERNAL_ERROR,
-    ErrorCode.WORKSPACE_UPLOAD_FAILED,
-})
+RETRYABLE_ERROR_CODES: Final[frozenset[str]] = frozenset(
+    {
+        ErrorCode.RATE_LIMITED,
+        ErrorCode.INTERNAL_ERROR,
+        ErrorCode.WORKSPACE_UPLOAD_FAILED,
+    }
+)
 
 
 # --- Capability Names ---
+
 
 class CapabilityName:
     FILE_READ: Final = "File.Read"
@@ -52,6 +56,7 @@ class CapabilityName:
 
 
 # --- Event Types ---
+
 
 class EventType:
     SESSION_CREATED: Final = "session_created"
@@ -73,6 +78,7 @@ class EventType:
 
 # --- Component Names ---
 
+
 class Component:
     DESKTOP_APP: Final = "DesktopApp"
     LOCAL_AGENT_HOST: Final = "LocalAgentHost"
@@ -91,6 +97,7 @@ class Component:
 
 # --- Session Status ---
 
+
 class SessionStatus:
     CREATED: Final = "SESSION_CREATED"
     RUNNING: Final = "SESSION_RUNNING"
@@ -105,6 +112,7 @@ class SessionStatus:
 
 # --- Risk Levels ---
 
+
 class RiskLevel:
     LOW: Final = "low"
     MEDIUM: Final = "medium"
@@ -112,6 +120,7 @@ class RiskLevel:
 
 
 # --- Tool Timeouts (seconds) ---
+
 
 class ToolTimeout:
     FILE: Final = 30

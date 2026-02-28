@@ -97,6 +97,12 @@ def main() -> int:
     init_lines.append("")
     (OUTPUT_DIR / "__init__.py").write_text("\n".join(init_lines))
 
+    # Format generated files with ruff
+    subprocess.run(
+        [sys.executable, "-m", "ruff", "format", str(OUTPUT_DIR)],
+        check=True,
+    )
+
     print(f"\nGenerated {len(all_modules)} modules in {OUTPUT_DIR}")
     return 0
 

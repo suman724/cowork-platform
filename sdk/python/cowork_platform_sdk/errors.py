@@ -58,7 +58,7 @@ class CoworkAPIError(Exception):
             # No specific subclass — use base constructor
             return cls(code=code, message=message, retryable=retryable, details=details)
         # Subclasses hardcode their own code/retryable, so only pass message and details
-        err = error_cls(message=message, details=details)
+        err = error_cls(message=message, details=details)  # type: ignore[call-arg]
         # Override retryable if the serialized value differs from the subclass default
         err.retryable = retryable
         return err
@@ -72,9 +72,7 @@ class CoworkAPIError(Exception):
 # The `details` parameter allows attaching structured context.
 
 
-def _make_init(
-    code: str, default_message: str, default_retryable: bool
-) -> Any:
+def _make_init(code: str, default_message: str, default_retryable: bool) -> Any:
     """Helper to avoid boilerplate in error subclass __init__ methods."""
 
     def _init(
@@ -83,9 +81,7 @@ def _make_init(
         *,
         details: dict[str, Any] | None = None,
     ) -> None:
-        super(type(self), self).__init__(
-            code, message, retryable=default_retryable, details=details
-        )
+        CoworkAPIError.__init__(self, code, message, retryable=default_retryable, details=details)
 
     return _init
 

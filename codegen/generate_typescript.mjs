@@ -7,6 +7,7 @@
  * index.ts barrel export.
  */
 
+import { execFileSync } from "node:child_process";
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
 import { join, basename, resolve } from "node:path";
 import { compileFromFile } from "json-schema-to-typescript";
@@ -101,6 +102,11 @@ async function main() {
     "",
   ].join("\n");
   await writeFile(join(OUT_DIR, "index.ts"), indexContent, "utf-8");
+
+  // Format generated files with prettier
+  execFileSync("npx", ["prettier", "--write", join(OUT_DIR, "*.ts")], {
+    stdio: "inherit",
+  });
 
   console.log(`\nGenerated ${files.length} interfaces → ${OUT_DIR}/models.ts`);
 }

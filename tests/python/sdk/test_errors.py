@@ -17,9 +17,7 @@ from cowork_platform_sdk.errors import (
 @pytest.mark.unit
 class TestCoworkAPIError:
     def test_base_error_creation(self) -> None:
-        err = CoworkAPIError(
-            code="TEST_CODE", message="test message", retryable=False
-        )
+        err = CoworkAPIError(code="TEST_CODE", message="test message", retryable=False)
         assert err.code == "TEST_CODE"
         assert err.message == "test message"
         assert err.retryable is False

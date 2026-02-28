@@ -69,7 +69,7 @@ def parse_error_response(response: httpx.Response) -> CoworkAPIError:
         data: dict[str, Any] = response.json()
         return CoworkAPIError.from_dict(data)
     except Exception:
-        return InternalError(
+        return InternalError(  # type: ignore[no-any-return]
             message=f"HTTP {response.status_code}: {response.text[:200]}",
             details={"status_code": response.status_code},
         )

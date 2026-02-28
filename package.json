@@ -7,7 +7,7 @@
   "types": "generated/typescript/src/index.ts",
   "scripts": {
     "codegen:ts": "node codegen/generate_typescript.mjs",
-    "lint": "eslint 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
+    "lint": "eslint 'sdk/typescript/src/**/*.ts'",
     "format": "prettier --write 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
     "format:check": "prettier --check 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
     "typecheck": "tsc --noEmit",

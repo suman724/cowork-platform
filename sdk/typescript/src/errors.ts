@@ -29,8 +29,7 @@ export class CoworkAPIError extends Error {
     super(message);
     this.name = "CoworkAPIError";
     this.code = code;
-    this.retryable =
-      options?.retryable ?? RETRYABLE_ERROR_CODES.has(code);
+    this.retryable = options?.retryable ?? RETRYABLE_ERROR_CODES.has(code);
     this.details = options?.details ?? {};
   }
 
@@ -94,64 +93,124 @@ function defineError(
 }
 
 export const InvalidRequestError = defineError(
-  "InvalidRequestError", ErrorCode.INVALID_REQUEST, "Invalid request", false,
+  "InvalidRequestError",
+  ErrorCode.INVALID_REQUEST,
+  "Invalid request",
+  false,
 );
 export const UnauthorizedError = defineError(
-  "UnauthorizedError", ErrorCode.UNAUTHORIZED, "Unauthorized", false,
+  "UnauthorizedError",
+  ErrorCode.UNAUTHORIZED,
+  "Unauthorized",
+  false,
 );
 export const SessionNotFoundError = defineError(
-  "SessionNotFoundError", ErrorCode.SESSION_NOT_FOUND, "Session not found", false,
+  "SessionNotFoundError",
+  ErrorCode.SESSION_NOT_FOUND,
+  "Session not found",
+  false,
 );
 export const SessionExpiredError = defineError(
-  "SessionExpiredError", ErrorCode.SESSION_EXPIRED, "Session expired", false,
+  "SessionExpiredError",
+  ErrorCode.SESSION_EXPIRED,
+  "Session expired",
+  false,
 );
 export const PolicyBundleInvalidError = defineError(
-  "PolicyBundleInvalidError", ErrorCode.POLICY_BUNDLE_INVALID, "Policy bundle invalid", false,
+  "PolicyBundleInvalidError",
+  ErrorCode.POLICY_BUNDLE_INVALID,
+  "Policy bundle invalid",
+  false,
 );
 export const PolicyExpiredError = defineError(
-  "PolicyExpiredError", ErrorCode.POLICY_EXPIRED, "Policy expired", false,
+  "PolicyExpiredError",
+  ErrorCode.POLICY_EXPIRED,
+  "Policy expired",
+  false,
 );
 export const CapabilityDeniedError = defineError(
-  "CapabilityDeniedError", ErrorCode.CAPABILITY_DENIED, "Capability denied", false,
+  "CapabilityDeniedError",
+  ErrorCode.CAPABILITY_DENIED,
+  "Capability denied",
+  false,
 );
 export const ApprovalRequiredError = defineError(
-  "ApprovalRequiredError", ErrorCode.APPROVAL_REQUIRED, "Approval required", false,
+  "ApprovalRequiredError",
+  ErrorCode.APPROVAL_REQUIRED,
+  "Approval required",
+  false,
 );
 export const ApprovalDeniedError = defineError(
-  "ApprovalDeniedError", ErrorCode.APPROVAL_DENIED, "Approval denied", false,
+  "ApprovalDeniedError",
+  ErrorCode.APPROVAL_DENIED,
+  "Approval denied",
+  false,
 );
 export const ToolNotFoundError = defineError(
-  "ToolNotFoundError", ErrorCode.TOOL_NOT_FOUND, "Tool not found", false,
+  "ToolNotFoundError",
+  ErrorCode.TOOL_NOT_FOUND,
+  "Tool not found",
+  false,
 );
 export const ToolExecutionError = defineError(
-  "ToolExecutionError", ErrorCode.TOOL_EXECUTION_FAILED, "Tool execution failed", false,
+  "ToolExecutionError",
+  ErrorCode.TOOL_EXECUTION_FAILED,
+  "Tool execution failed",
+  false,
 );
 export const ToolExecutionTimeoutError = defineError(
-  "ToolExecutionTimeoutError", ErrorCode.TOOL_EXECUTION_TIMEOUT, "Tool execution timed out", false,
+  "ToolExecutionTimeoutError",
+  ErrorCode.TOOL_EXECUTION_TIMEOUT,
+  "Tool execution timed out",
+  false,
 );
 export const FileNotFoundError = defineError(
-  "FileNotFoundError", ErrorCode.FILE_NOT_FOUND, "File not found", false,
+  "FileNotFoundError",
+  ErrorCode.FILE_NOT_FOUND,
+  "File not found",
+  false,
 );
 export const FileTooLargeError = defineError(
-  "FileTooLargeError", ErrorCode.FILE_TOO_LARGE, "File too large", false,
+  "FileTooLargeError",
+  ErrorCode.FILE_TOO_LARGE,
+  "File too large",
+  false,
 );
 export const PermissionDeniedError = defineError(
-  "PermissionDeniedError", ErrorCode.PERMISSION_DENIED, "Permission denied", false,
+  "PermissionDeniedError",
+  ErrorCode.PERMISSION_DENIED,
+  "Permission denied",
+  false,
 );
 export const LlmGuardrailBlockedError = defineError(
-  "LlmGuardrailBlockedError", ErrorCode.LLM_GUARDRAIL_BLOCKED, "LLM guardrail blocked", false,
+  "LlmGuardrailBlockedError",
+  ErrorCode.LLM_GUARDRAIL_BLOCKED,
+  "LLM guardrail blocked",
+  false,
 );
 export const LlmBudgetExceededError = defineError(
-  "LlmBudgetExceededError", ErrorCode.LLM_BUDGET_EXCEEDED, "LLM budget exceeded", false,
+  "LlmBudgetExceededError",
+  ErrorCode.LLM_BUDGET_EXCEEDED,
+  "LLM budget exceeded",
+  false,
 );
 export const WorkspaceUploadError = defineError(
-  "WorkspaceUploadError", ErrorCode.WORKSPACE_UPLOAD_FAILED, "Workspace upload failed", true,
+  "WorkspaceUploadError",
+  ErrorCode.WORKSPACE_UPLOAD_FAILED,
+  "Workspace upload failed",
+  true,
 );
 export const RateLimitedError = defineError(
-  "RateLimitedError", ErrorCode.RATE_LIMITED, "Rate limited", true,
+  "RateLimitedError",
+  ErrorCode.RATE_LIMITED,
+  "Rate limited",
+  true,
 );
 export const InternalError = defineError(
-  "InternalError", ErrorCode.INTERNAL_ERROR, "Internal error", true,
+  "InternalError",
+  ErrorCode.INTERNAL_ERROR,
+  "Internal error",
+  true,
 );
 
 // --- Code-to-class mapping ---
