@@ -77,7 +77,7 @@ def _make_init(
 ) -> Any:
     """Helper to avoid boilerplate in error subclass __init__ methods."""
 
-    def __init__(
+    def _init(
         self: CoworkAPIError,
         message: str = default_message,
         *,
@@ -87,7 +87,7 @@ def _make_init(
             code, message, retryable=default_retryable, details=details
         )
 
-    return __init__
+    return _init
 
 
 class InvalidRequestError(CoworkAPIError):
@@ -120,8 +120,8 @@ class ToolNotFoundError(CoworkAPIError):
     __init__ = _make_init(ErrorCode.TOOL_NOT_FOUND, "Tool not found", False)
 
 
-class FileNotFoundError_(CoworkAPIError):
-    """404 — File not found. Named with underscore to avoid shadowing built-in."""
+class CoworkFileNotFoundError(CoworkAPIError):
+    """404 — File not found."""
 
     __init__ = _make_init(ErrorCode.FILE_NOT_FOUND, "File not found", False)
 
@@ -231,7 +231,7 @@ _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
     ErrorCode.TOOL_NOT_FOUND: ToolNotFoundError,
     ErrorCode.TOOL_EXECUTION_FAILED: ToolExecutionError,
     ErrorCode.TOOL_EXECUTION_TIMEOUT: ToolExecutionTimeoutError,
-    ErrorCode.FILE_NOT_FOUND: FileNotFoundError_,
+    ErrorCode.FILE_NOT_FOUND: CoworkFileNotFoundError,
     ErrorCode.FILE_TOO_LARGE: FileTooLargeError,
     ErrorCode.PERMISSION_DENIED: PermissionDeniedError,
     ErrorCode.LLM_GUARDRAIL_BLOCKED: LlmGuardrailBlockedError,

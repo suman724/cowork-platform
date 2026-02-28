@@ -3,7 +3,6 @@
 import uuid
 
 import pytest
-
 from cowork_platform_sdk.constants import Component, EventType
 from cowork_platform_sdk.event_builder import build_event
 

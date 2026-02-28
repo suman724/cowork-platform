@@ -41,6 +41,10 @@ target-version = "py312"
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "S", "B", "A", "C4", "SIM", "TCH", "RUF"]
 
+[tool.ruff.lint.per-file-ignores]
+"generated/**" = ["N815", "E501", "TC003"]
+"tests/**" = ["S101", "S108"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true

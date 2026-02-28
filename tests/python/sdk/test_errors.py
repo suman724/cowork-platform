@@ -1,7 +1,6 @@
 """Tests for the error hierarchy and serialization."""
 
 import pytest
-
 from cowork_platform_sdk.constants import ErrorCode
 from cowork_platform_sdk.errors import (
     CapabilityDeniedError,

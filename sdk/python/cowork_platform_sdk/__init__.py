@@ -35,19 +35,16 @@ from cowork_platform_sdk.event_builder import build_event
 from cowork_platform_sdk.http_client import create_http_client, raise_for_status
 
 __all__ = [
-    # Constants
-    "CapabilityName",
-    "Component",
-    "ErrorCode",
-    "EventType",
-    "RiskLevel",
-    "SessionStatus",
-    "ToolTimeout",
     # Errors
     "ApprovalDeniedError",
     "ApprovalRequiredError",
     "CapabilityDeniedError",
+    # Constants
+    "CapabilityName",
+    "Component",
     "CoworkAPIError",
+    "ErrorCode",
+    "EventType",
     "InternalError",
     "InvalidRequestError",
     "LlmBudgetExceededError",
@@ -57,11 +54,14 @@ __all__ = [
     "PolicyBundleInvalidError",
     "PolicyExpiredError",
     "RateLimitedError",
+    "RiskLevel",
     "SessionExpiredError",
     "SessionNotFoundError",
+    "SessionStatus",
     "ToolExecutionError",
     "ToolExecutionTimeoutError",
     "ToolNotFoundError",
+    "ToolTimeout",
     "UnauthorizedError",
     "WorkspaceUploadError",
     # Builders

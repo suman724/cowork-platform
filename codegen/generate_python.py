@@ -92,7 +92,7 @@ def main() -> int:
         "",
     ]
     for module in sorted(all_modules):
-        init_lines.append(f"from cowork_platform.{module} import *  # noqa: F401, F403")
+        init_lines.append(f"from cowork_platform.{module} import *  # noqa: F403")
 
     init_lines.append("")
     (OUTPUT_DIR / "__init__.py").write_text("\n".join(init_lines))

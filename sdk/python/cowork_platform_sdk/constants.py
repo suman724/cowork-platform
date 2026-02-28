@@ -2,7 +2,6 @@
 
 from typing import Final
 
-
 # --- Error Codes ---
 # Machine-readable codes used in ErrorResponse across all services.
 
