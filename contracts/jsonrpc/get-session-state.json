@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/get-session-state.json",
+  "title": "GetSessionState",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Returns current session state.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["sessionId"],
+      "properties": {
+        "sessionId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["sessionId", "status"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "status": { "type": "string" },
+        "currentTaskId": { "type": "string" },
+        "currentStepId": { "type": "string" },
+        "stepCount": { "type": "integer" },
+        "sessionTokensUsed": { "type": "integer" },
+        "maxSessionTokens": { "type": "integer" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

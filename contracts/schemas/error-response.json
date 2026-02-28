@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/error-response.json",
+  "title": "ErrorResponse",
+  "description": "Standard error shape used across all backend HTTP responses and local IPC error responses.",
+  "type": "object",
+  "required": ["code", "message", "retryable"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Machine-readable error code.",
+      "enum": [
+        "INVALID_REQUEST",
+        "UNAUTHORIZED",
+        "SESSION_NOT_FOUND",
+        "SESSION_EXPIRED",
+        "POLICY_BUNDLE_INVALID",
+        "POLICY_EXPIRED",
+        "CAPABILITY_DENIED",
+        "APPROVAL_REQUIRED",
+        "APPROVAL_DENIED",
+        "TOOL_NOT_FOUND",
+        "TOOL_EXECUTION_FAILED",
+        "TOOL_EXECUTION_TIMEOUT",
+        "FILE_NOT_FOUND",
+        "FILE_TOO_LARGE",
+        "PERMISSION_DENIED",
+        "LLM_GUARDRAIL_BLOCKED",
+        "LLM_BUDGET_EXCEEDED",
+        "WORKSPACE_UPLOAD_FAILED",
+        "RATE_LIMITED",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable error description."
+    },
+    "retryable": {
+      "type": "boolean",
+      "description": "Whether the client should retry this request."
+    },
+    "details": {
+      "type": "object",
+      "description": "Optional structured details about the error.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

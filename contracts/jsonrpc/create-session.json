@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/create-session.json",
+  "title": "CreateSession",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Creates a new session.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["userId", "tenantId", "executionEnvironment", "clientInfo", "supportedCapabilities"],
+      "properties": {
+        "userId": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "executionEnvironment": {
+          "type": "string",
+          "enum": ["desktop", "cloud_sandbox"]
+        },
+        "workspaceHint": {
+          "type": "object",
+          "properties": {
+            "localPaths": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "clientInfo": {
+          "type": "object",
+          "required": ["desktopAppVersion", "localAgentHostVersion", "osFamily"],
+          "properties": {
+            "desktopAppVersion": { "type": "string" },
+            "localAgentHostVersion": { "type": "string" },
+            "osFamily": { "type": "string" },
+            "osVersion": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "supportedCapabilities": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["sessionId", "workspaceId", "compatibilityStatus"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "workspaceId": { "type": "string" },
+        "compatibilityStatus": {
+          "type": "string",
+          "enum": ["compatible", "incompatible"]
+        },
+        "policyBundle": { "$ref": "../schemas/policy-bundle.json" },
+        "featureFlags": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

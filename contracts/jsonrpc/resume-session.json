@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/resume-session.json",
+  "title": "ResumeSession",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Resumes a session from a checkpoint after crash.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["sessionId", "checkpointCursor"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "checkpointCursor": {
+          "type": "string",
+          "description": "Last completed step ID from the checkpoint."
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["sessionId", "workspaceId", "compatibilityStatus"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "workspaceId": { "type": "string" },
+        "compatibilityStatus": {
+          "type": "string",
+          "enum": ["compatible", "incompatible"]
+        },
+        "policyBundle": { "$ref": "../schemas/policy-bundle.json" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

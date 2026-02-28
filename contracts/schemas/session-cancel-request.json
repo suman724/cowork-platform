@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/session-cancel-request.json",
+  "title": "SessionCancelRequest",
+  "description": "Request to cancel a session.",
+  "type": "object",
+  "required": ["reason"],
+  "properties": {
+    "reason": {
+      "type": "string",
+      "description": "Reason for cancellation."
+    }
+  },
+  "additionalProperties": false
+}

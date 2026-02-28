@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/capability.json",
+  "title": "Capability",
+  "description": "A single capability entry in a policy bundle. Defines what the agent is permitted to do with scope constraints.",
+  "type": "object",
+  "required": ["name"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "File.Read",
+        "File.Write",
+        "File.Delete",
+        "Shell.Exec",
+        "Network.Http",
+        "Workspace.Upload",
+        "BackendTool.Invoke",
+        "LLM.Call"
+      ],
+      "description": "Capability identifier."
+    },
+    "allowedPaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Path prefixes where file operations are permitted. Applies to File.Read, File.Write, File.Delete."
+    },
+    "blockedPaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Path prefixes explicitly denied. Takes precedence over allowedPaths."
+    },
+    "allowedCommands": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Base commands permitted for Shell.Exec (e.g., git, python, npm)."
+    },
+    "blockedCommands": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Base commands explicitly denied for Shell.Exec."
+    },
+    "allowedDomains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Domains permitted for Network.Http requests."
+    },
+    "maxFileSizeBytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum file size in bytes for file operations and artifact uploads."
+    },
+    "maxOutputBytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Maximum output size in bytes for Shell.Exec and tool outputs."
+    },
+    "requiresApproval": {
+      "type": "boolean",
+      "description": "Whether this capability requires user approval before execution."
+    },
+    "approvalRuleId": {
+      "type": "string",
+      "description": "Reference to the approval rule in the policy bundle's approvalRules array."
+    }
+  },
+  "additionalProperties": false
+}

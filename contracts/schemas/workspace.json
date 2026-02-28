@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/workspace.json",
+  "title": "Workspace",
+  "description": "Backend namespace scoping a session's history and artifacts.",
+  "type": "object",
+  "required": ["workspaceId", "workspaceScope", "tenantId", "userId", "createdAt", "lastActiveAt"],
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "Unique workspace identifier."
+    },
+    "workspaceScope": {
+      "type": "string",
+      "enum": ["local", "general", "cloud"],
+      "description": "Where the source files live and the reuse policy."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant."
+    },
+    "userId": {
+      "type": "string",
+      "description": "Owner."
+    },
+    "localPath": {
+      "type": "string",
+      "description": "Local directory this workspace maps to. Present for local-scoped workspaces only."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the workspace was first created."
+    },
+    "lastActiveAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last time a session was created or artifact uploaded under this workspace."
+    }
+  },
+  "additionalProperties": false
+}

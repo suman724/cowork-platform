@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/get-patch-preview.json",
+  "title": "GetPatchPreview",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Returns file diffs for the patch preview view.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["sessionId"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "filePaths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional filter to specific files."
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["diffs"],
+      "properties": {
+        "diffs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["filePath", "diff"],
+            "properties": {
+              "filePath": { "type": "string" },
+              "diff": {
+                "type": "string",
+                "description": "Unified diff content."
+              },
+              "status": {
+                "type": "string",
+                "enum": ["created", "modified", "deleted"]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/trace-span.json",
+  "title": "TraceSpan",
+  "description": "Distributed trace span for operational telemetry. Follows OpenTelemetry conventions.",
+  "type": "object",
+  "required": ["traceId", "spanId", "operationName", "component", "startTime", "endTime", "status"],
+  "properties": {
+    "traceId": {
+      "type": "string",
+      "description": "Trace ID spanning the full step lifecycle."
+    },
+    "spanId": {
+      "type": "string",
+      "description": "Unique span identifier."
+    },
+    "parentSpanId": {
+      "type": "string",
+      "description": "Parent span for nested operations."
+    },
+    "operationName": {
+      "type": "string",
+      "description": "Name of the operation (e.g., llm_call, tool_execute, dynamo_query)."
+    },
+    "component": {
+      "type": "string",
+      "description": "Component that owns this span."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session context."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Task context."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Step context."
+    },
+    "startTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the operation started."
+    },
+    "endTime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the operation ended."
+    },
+    "durationMs": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Duration in milliseconds."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ok", "error"],
+      "description": "Span outcome."
+    },
+    "tags": {
+      "type": "object",
+      "description": "Key-value tags (e.g., model, inputTokens, outputTokens, toolName).",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/session-event.json",
+  "title": "SessionEvent",
+  "description": "JSON-RPC notification: Local Agent Host → Desktop App. Pushed continuously during task execution for live UI progress.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["eventId", "sessionId", "eventType", "timestamp"],
+      "properties": {
+        "eventId": { "type": "string" },
+        "sessionId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "session_created",
+            "session_started",
+            "step_started",
+            "step_completed",
+            "step_limit_approaching",
+            "text_chunk",
+            "llm_request_started",
+            "llm_request_completed",
+            "tool_requested",
+            "tool_completed",
+            "approval_requested",
+            "approval_resolved",
+            "policy_expired",
+            "session_completed",
+            "session_failed"
+          ]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Event-specific data (e.g., stepId, toolName, text chunk, approval request).",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

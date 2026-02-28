@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/session.json",
+  "title": "Session",
+  "description": "Session metadata record. The governance container for one continuous working period.",
+  "type": "object",
+  "required": ["sessionId", "workspaceId", "tenantId", "userId", "executionEnvironment", "status", "createdAt", "expiresAt"],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Unique session identifier."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Always present — every session has a workspace."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant the session belongs to."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User who owns the session."
+    },
+    "executionEnvironment": {
+      "type": "string",
+      "enum": ["desktop", "cloud_sandbox"],
+      "description": "Where the agent is running."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SESSION_CREATED",
+        "SESSION_RUNNING",
+        "WAITING_FOR_LLM",
+        "WAITING_FOR_TOOL",
+        "WAITING_FOR_APPROVAL",
+        "SESSION_PAUSED",
+        "SESSION_COMPLETED",
+        "SESSION_FAILED",
+        "SESSION_CANCELLED"
+      ],
+      "description": "Current session state machine state."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session creation time."
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Policy bundle expiry — session must not continue past this."
+    }
+  },
+  "additionalProperties": false
+}

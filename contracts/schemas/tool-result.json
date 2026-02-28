@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/tool-result.json",
+  "title": "ToolResult",
+  "description": "Result returned from the Local Tool Runtime (or Backend Tool Service) after tool execution.",
+  "type": "object",
+  "required": ["toolName", "sessionId", "taskId", "stepId", "status"],
+  "properties": {
+    "toolName": {
+      "type": "string",
+      "description": "Name of the tool that was executed."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Parent session ID."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Parent task ID."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Parent step ID."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["succeeded", "failed", "denied"],
+      "description": "Execution outcome. 'denied' when policy blocks the tool call."
+    },
+    "outputText": {
+      "type": "string",
+      "description": "Truncated text output from the tool. May be empty if output was uploaded as an artifact."
+    },
+    "artifactUris": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "URIs referencing full output uploaded to Workspace Service (for outputs > 10KB)."
+    },
+    "error": {
+      "type": "object",
+      "description": "Error details when status is 'failed' or 'denied'.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Machine-readable error code."
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error description."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "name": "@cowork/platform",
+  "version": "0.1.0",
+  "description": "Shared contracts and SDK helpers for the cowork project (TypeScript)",
+  "type": "module",
+  "main": "generated/typescript/src/index.ts",
+  "types": "generated/typescript/src/index.ts",
+  "scripts": {
+    "codegen:ts": "node codegen/generate_typescript.mjs",
+    "lint": "eslint 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
+    "format": "prettier --write 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
+    "format:check": "prettier --check 'generated/typescript/src/**/*.ts' 'sdk/typescript/src/**/*.ts'",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^9.0.0",
+    "json-schema-to-typescript": "^15.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.0.0"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/artifact-upload-request.json",
+  "title": "ArtifactUploadRequest",
+  "description": "Request to upload an artifact to the Workspace Service.",
+  "type": "object",
+  "required": ["sessionId", "artifactType"],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Session that produced this artifact."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Task that produced this artifact."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Step that produced this artifact."
+    },
+    "artifactType": {
+      "type": "string",
+      "enum": ["session_history", "tool_output", "file_diff"],
+      "description": "Type of artifact."
+    },
+    "artifactName": {
+      "type": "string",
+      "description": "Human-readable name for non-history artifacts."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "MIME content type for non-history artifacts."
+    },
+    "contentBase64": {
+      "type": "string",
+      "description": "Base64-encoded content for tool_output and file_diff artifacts."
+    },
+    "snapshotAfterTaskId": {
+      "type": "string",
+      "description": "For session_history: the last completed task at the time of this snapshot."
+    },
+    "snapshotAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "For session_history: when the snapshot was taken."
+    },
+    "messages": {
+      "type": "array",
+      "items": { "$ref": "conversation-message.json" },
+      "description": "For session_history: the full conversation thread."
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional artifact metadata (e.g., toolName).",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

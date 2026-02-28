@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/start-task.json",
+  "title": "StartTask",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Starts a new task (one user prompt → one agent work cycle).",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["sessionId", "taskId", "prompt"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "taskId": { "type": "string" },
+        "prompt": {
+          "type": "string",
+          "description": "The user's instruction."
+        },
+        "taskOptions": {
+          "type": "object",
+          "properties": {
+            "maxSteps": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Maximum agent loop iterations."
+            },
+            "allowNetwork": {
+              "type": "boolean",
+              "description": "Whether outbound network tool calls are permitted."
+            },
+            "approvalMode": {
+              "type": "string",
+              "enum": ["always", "on_risky_actions", "never"],
+              "description": "When to require user approval."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "required": ["taskId", "status"],
+      "properties": {
+        "taskId": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

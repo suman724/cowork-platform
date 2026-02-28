@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/tool-definition.json",
+  "title": "ToolDefinition",
+  "description": "Describes an available tool. Sent from Tool Runtime to Agent Host, then forwarded to the LLM.",
+  "type": "object",
+  "required": ["toolName", "description", "inputSchema"],
+  "properties": {
+    "toolName": {
+      "type": "string",
+      "description": "Unique tool name (e.g., ReadFile, WriteFile, RunCommand, HttpRequest)."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of what the tool does, sent to the LLM."
+    },
+    "inputSchema": {
+      "type": "object",
+      "description": "JSON Schema describing the tool's input arguments.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

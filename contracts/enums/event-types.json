@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/enums/event-types.json",
+  "title": "EventType",
+  "description": "Standard event type names used in event envelopes and SessionEvent notifications.",
+  "type": "string",
+  "enum": [
+    "session_created",
+    "session_started",
+    "step_started",
+    "step_completed",
+    "step_limit_approaching",
+    "text_chunk",
+    "llm_request_started",
+    "llm_request_completed",
+    "tool_requested",
+    "tool_completed",
+    "approval_requested",
+    "approval_resolved",
+    "policy_expired",
+    "session_completed",
+    "session_failed"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/approval-decision.json",
+  "title": "ApprovalDecision",
+  "description": "Persisted record of a user's approval decision. Stored by Approval Service, append-only.",
+  "type": "object",
+  "required": [
+    "approvalId",
+    "sessionId",
+    "taskId",
+    "userId",
+    "tenantId",
+    "workspaceId",
+    "decision",
+    "actionSummary",
+    "clientTimestamp"
+  ],
+  "properties": {
+    "approvalId": {
+      "type": "string",
+      "description": "Unique identifier matching the original ApprovalRequest."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Parent session."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Parent task."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Parent step."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User who made the decision."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant context."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Workspace context."
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["approved", "denied"],
+      "description": "The user's decision."
+    },
+    "reason": {
+      "type": "string",
+      "description": "Optional reason provided by the user."
+    },
+    "actionSummary": {
+      "type": "string",
+      "description": "Summary of the action that was approved or denied."
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Risk level from the original request."
+    },
+    "clientTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the user made the decision (client clock)."
+    },
+    "serverTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the Approval Service received the decision."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation time."
+    }
+  },
+  "additionalProperties": false
+}

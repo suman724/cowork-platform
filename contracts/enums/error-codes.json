@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/enums/error-codes.json",
+  "title": "ErrorCode",
+  "description": "Standard error codes used across all cowork services and components.",
+  "type": "string",
+  "enum": [
+    "INVALID_REQUEST",
+    "UNAUTHORIZED",
+    "SESSION_NOT_FOUND",
+    "SESSION_EXPIRED",
+    "POLICY_BUNDLE_INVALID",
+    "POLICY_EXPIRED",
+    "CAPABILITY_DENIED",
+    "APPROVAL_REQUIRED",
+    "APPROVAL_DENIED",
+    "TOOL_NOT_FOUND",
+    "TOOL_EXECUTION_FAILED",
+    "TOOL_EXECUTION_TIMEOUT",
+    "FILE_NOT_FOUND",
+    "FILE_TOO_LARGE",
+    "PERMISSION_DENIED",
+    "LLM_GUARDRAIL_BLOCKED",
+    "LLM_BUDGET_EXCEEDED",
+    "WORKSPACE_UPLOAD_FAILED",
+    "RATE_LIMITED",
+    "INTERNAL_ERROR"
+  ]
+}

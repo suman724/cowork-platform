@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/workspace-create-request.json",
+  "title": "WorkspaceCreateRequest",
+  "description": "Request to create or resolve a workspace. Sent by Session Service to Workspace Service.",
+  "type": "object",
+  "required": ["tenantId", "userId", "workspaceScope"],
+  "properties": {
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User."
+    },
+    "workspaceScope": {
+      "type": "string",
+      "enum": ["local", "general", "cloud"],
+      "description": "Workspace scope determines reuse policy."
+    },
+    "localPath": {
+      "type": "string",
+      "description": "Local directory path. Required for local-scoped workspaces."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/conversation-message.json",
+  "title": "ConversationMessage",
+  "description": "One entry in the session's conversation thread. Stored in memory during a session, persisted as session_history artifact.",
+  "type": "object",
+  "required": ["messageId", "sessionId", "role", "content", "timestamp"],
+  "properties": {
+    "messageId": {
+      "type": "string",
+      "description": "Unique message identifier."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Parent session."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "The task this message was generated in."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "The step this message was generated in."
+    },
+    "role": {
+      "type": "string",
+      "enum": ["system", "user", "assistant", "tool"],
+      "description": "Message role in the conversation."
+    },
+    "content": {
+      "type": "string",
+      "description": "Message content."
+    },
+    "tokenCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Approximate token count for this message."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the message was created."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/workspace-create-response.json",
+  "title": "WorkspaceCreateResponse",
+  "description": "Response after creating or resolving a workspace.",
+  "type": "object",
+  "required": ["workspaceId", "workspaceScope", "createdAt"],
+  "properties": {
+    "workspaceId": {
+      "type": "string",
+      "description": "Workspace ID (new or existing for local-scoped)."
+    },
+    "workspaceScope": {
+      "type": "string",
+      "enum": ["local", "general", "cloud"],
+      "description": "Workspace scope."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the workspace was created."
+    }
+  },
+  "additionalProperties": false
+}

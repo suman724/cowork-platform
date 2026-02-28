@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/artifact.json",
+  "title": "Artifact",
+  "description": "Artifact metadata record. Content is stored in S3, this record is stored in DynamoDB.",
+  "type": "object",
+  "required": ["artifactId", "workspaceId", "sessionId", "artifactType", "createdAt"],
+  "properties": {
+    "artifactId": {
+      "type": "string",
+      "description": "Unique artifact identifier."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Parent workspace."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session that produced this artifact."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Task that produced this artifact."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Step that produced this artifact."
+    },
+    "artifactType": {
+      "type": "string",
+      "enum": ["session_history", "tool_output", "file_diff"],
+      "description": "Type of artifact content."
+    },
+    "artifactName": {
+      "type": "string",
+      "description": "Human-readable name (e.g., pytest_output.txt)."
+    },
+    "contentType": {
+      "type": "string",
+      "description": "MIME content type (e.g., text/plain, application/json)."
+    },
+    "s3Key": {
+      "type": "string",
+      "description": "Full S3 object key for the artifact content."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Record creation time."
+    }
+  },
+  "additionalProperties": false
+}

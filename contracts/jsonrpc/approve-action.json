@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/approve-action.json",
+  "title": "ApproveAction",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Delivers the user's approval decision.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["approvalId", "decision"],
+      "properties": {
+        "approvalId": { "type": "string" },
+        "decision": {
+          "type": "string",
+          "enum": ["approved", "denied"]
+        },
+        "reason": {
+          "type": "string",
+          "description": "Optional reason for the decision."
+        }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

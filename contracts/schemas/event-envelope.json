@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/event-envelope.json",
+  "title": "EventEnvelope",
+  "description": "Standard envelope for all audit and telemetry events. The component field identifies the sender.",
+  "type": "object",
+  "required": ["eventId", "eventType", "timestamp", "tenantId", "userId", "sessionId", "component", "payload"],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique event identifier (UUID)."
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "session_created",
+        "session_started",
+        "step_started",
+        "step_completed",
+        "step_limit_approaching",
+        "text_chunk",
+        "llm_request_started",
+        "llm_request_completed",
+        "tool_requested",
+        "tool_completed",
+        "approval_requested",
+        "approval_resolved",
+        "policy_expired",
+        "session_completed",
+        "session_failed"
+      ],
+      "description": "Type of event."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event occurred (ISO 8601)."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant context."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User context."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Workspace context (if applicable)."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session context."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Task context (if applicable)."
+    },
+    "component": {
+      "type": "string",
+      "enum": [
+        "DesktopApp",
+        "LocalAgentHost",
+        "LocalToolRuntime",
+        "LocalPolicyEnforcer",
+        "LocalApprovalUI",
+        "SessionService",
+        "LLMGateway",
+        "PolicyService",
+        "ApprovalService",
+        "WorkspaceService",
+        "AuditService",
+        "TelemetryService",
+        "BackendToolService"
+      ],
+      "description": "Component that emitted this event."
+    },
+    "boundedContext": {
+      "type": "string",
+      "description": "Bounded context of the emitting component."
+    },
+    "severity": {
+      "type": "string",
+      "enum": ["debug", "info", "warning", "error", "critical"],
+      "description": "Event severity level."
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific payload data. Structure varies by eventType.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

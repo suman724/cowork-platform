@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/session-create-request.json",
+  "title": "SessionCreateRequest",
+  "description": "Request to create a new session. Sent by Local Agent Host to Session Service.",
+  "type": "object",
+  "required": ["tenantId", "userId", "executionEnvironment", "clientInfo", "supportedCapabilities"],
+  "properties": {
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant for this session."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User starting the session."
+    },
+    "executionEnvironment": {
+      "type": "string",
+      "enum": ["desktop", "cloud_sandbox"],
+      "description": "Where the agent is running."
+    },
+    "workspaceHint": {
+      "type": "object",
+      "description": "Hint for workspace resolution.",
+      "properties": {
+        "localPaths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Local directory paths to resolve a local-scoped workspace."
+        }
+      },
+      "additionalProperties": false
+    },
+    "clientInfo": {
+      "type": "object",
+      "required": ["desktopAppVersion", "localAgentHostVersion", "osFamily"],
+      "description": "Client version and platform info for compatibility check.",
+      "properties": {
+        "desktopAppVersion": {
+          "type": "string",
+          "description": "Desktop App version."
+        },
+        "localAgentHostVersion": {
+          "type": "string",
+          "description": "Local Agent Host version."
+        },
+        "osFamily": {
+          "type": "string",
+          "description": "Operating system family (e.g., macOS, Windows)."
+        },
+        "osVersion": {
+          "type": "string",
+          "description": "Operating system version."
+        }
+      },
+      "additionalProperties": false
+    },
+    "supportedCapabilities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Capabilities the client supports (e.g., File.Read, Shell.Exec)."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/session-resume-request.json",
+  "title": "SessionResumeRequest",
+  "description": "Request to resume a session after crash recovery. Sent by Local Agent Host to Session Service.",
+  "type": "object",
+  "required": ["sessionId", "checkpointCursor"],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Session to resume."
+    },
+    "checkpointCursor": {
+      "type": "string",
+      "description": "Last completed step ID from the checkpoint."
+    }
+  },
+  "additionalProperties": false
+}

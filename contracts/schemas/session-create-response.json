@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/session-create-response.json",
+  "title": "SessionCreateResponse",
+  "description": "Response from Session Service after creating a session. Contains everything the Agent Host needs to begin work.",
+  "type": "object",
+  "required": ["sessionId", "workspaceId", "compatibilityStatus"],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Newly created session ID."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Resolved or created workspace ID."
+    },
+    "compatibilityStatus": {
+      "type": "string",
+      "enum": ["compatible", "incompatible"],
+      "description": "Whether the client version is compatible with the backend."
+    },
+    "policyBundle": {
+      "$ref": "policy-bundle.json",
+      "description": "Policy bundle for this session. Present when compatibilityStatus is 'compatible'."
+    },
+    "featureFlags": {
+      "type": "object",
+      "description": "Feature flags for this session.",
+      "properties": {
+        "approvalUiEnabled": {
+          "type": "boolean",
+          "description": "Whether the approval UI is active."
+        },
+        "mcpEnabled": {
+          "type": "boolean",
+          "description": "Whether MCP tool servers are allowed."
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

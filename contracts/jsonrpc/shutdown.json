@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/shutdown.json",
+  "title": "Shutdown",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Gracefully shuts down the agent process.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

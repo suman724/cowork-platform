@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/jsonrpc/cancel-task.json",
+  "title": "CancelTask",
+  "description": "JSON-RPC method: Desktop App → Local Agent Host. Cancels the running task without ending the session.",
+  "type": "object",
+  "properties": {
+    "params": {
+      "type": "object",
+      "required": ["sessionId", "taskId"],
+      "properties": {
+        "sessionId": { "type": "string" },
+        "taskId": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "result": {
+      "type": "object",
+      "properties": {
+        "status": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

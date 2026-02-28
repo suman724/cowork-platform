@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/tool-request.json",
+  "title": "ToolRequest",
+  "description": "Request from the Local Agent Host to the Local Tool Runtime to execute a tool.",
+  "type": "object",
+  "required": ["toolName", "arguments", "sessionId", "taskId", "stepId"],
+  "properties": {
+    "toolName": {
+      "type": "string",
+      "description": "Name of the tool to execute (e.g., ReadFile, WriteFile, RunCommand)."
+    },
+    "arguments": {
+      "type": "object",
+      "description": "Tool-specific arguments. Schema varies per tool.",
+      "additionalProperties": true
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Parent session ID."
+    },
+    "taskId": {
+      "type": "string",
+      "description": "Parent task ID."
+    },
+    "stepId": {
+      "type": "string",
+      "description": "Parent step ID."
+    },
+    "capability": {
+      "type": "string",
+      "description": "The capability this tool requires (e.g., File.Read, Shell.Exec). Set by the routing layer."
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/enums/components.json",
+  "title": "Component",
+  "description": "Valid component identifiers for the component field in event envelopes.",
+  "type": "string",
+  "enum": [
+    "DesktopApp",
+    "LocalAgentHost",
+    "LocalToolRuntime",
+    "LocalPolicyEnforcer",
+    "LocalApprovalUI",
+    "SessionService",
+    "LLMGateway",
+    "PolicyService",
+    "ApprovalService",
+    "WorkspaceService",
+    "AuditService",
+    "TelemetryService",
+    "BackendToolService"
+  ]
+}
