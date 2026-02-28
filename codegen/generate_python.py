@@ -5,6 +5,7 @@ Reads all schemas from contracts/schemas/ and generates Python modules
 in generated/python/cowork_platform/.
 """
 
+import re
 import shutil
 import subprocess
 import sys
@@ -81,6 +82,11 @@ def main() -> int:
                     if "DeprecationWarning" not in line and "FutureWarning" not in line:
                         print(f"  {line}")
                 continue
+
+        # Strip the timestamp comment so regeneration doesn't produce diffs
+        content = output_file.read_text()
+        content = re.sub(r"#   timestamp:.*\n", "", content)
+        output_file.write_text(content)
 
         all_modules.append(module_name)
         print(f"  ✓ {sf.name} → {module_name}.py")
