@@ -191,7 +191,7 @@ jobs:
 
       - name: Verify Python package contents
         run: |
-          pip install dist/*.whl
+          pip install "$(ls dist/*.whl)[sdk]"
           python -c "from cowork_platform import ToolRequest; print('Python package OK')"
           python -c "from cowork_platform_sdk import CoworkAPIError; print('Python SDK OK')"
 
