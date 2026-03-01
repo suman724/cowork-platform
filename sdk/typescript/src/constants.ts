@@ -66,6 +66,7 @@ export const EventType = {
   POLICY_EXPIRED: "policy_expired",
   TASK_COMPLETED: "task_completed",
   TASK_FAILED: "task_failed",
+  LLM_RETRY: "llm_retry",
   SESSION_COMPLETED: "session_completed",
   SESSION_FAILED: "session_failed",
 } as const;
