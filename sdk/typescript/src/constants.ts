@@ -64,6 +64,8 @@ export const EventType = {
   APPROVAL_REQUESTED: "approval_requested",
   APPROVAL_RESOLVED: "approval_resolved",
   POLICY_EXPIRED: "policy_expired",
+  TASK_COMPLETED: "task_completed",
+  TASK_FAILED: "task_failed",
   SESSION_COMPLETED: "session_completed",
   SESSION_FAILED: "session_failed",
 } as const;
