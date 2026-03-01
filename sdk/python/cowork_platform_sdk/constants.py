@@ -72,6 +72,8 @@ class EventType:
     APPROVAL_REQUESTED: Final = "approval_requested"
     APPROVAL_RESOLVED: Final = "approval_resolved"
     POLICY_EXPIRED: Final = "policy_expired"
+    TASK_COMPLETED: Final = "task_completed"
+    TASK_FAILED: Final = "task_failed"
     SESSION_COMPLETED: Final = "session_completed"
     SESSION_FAILED: Final = "session_failed"
 
