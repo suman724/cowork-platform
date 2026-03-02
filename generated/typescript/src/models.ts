@@ -374,6 +374,10 @@ export interface EventEnvelope {
     | "approval_requested"
     | "approval_resolved"
     | "policy_expired"
+    | "task_completed"
+    | "task_failed"
+    | "llm_retry"
+    | "context_compacted"
     | "session_completed"
     | "session_failed";
   /**
