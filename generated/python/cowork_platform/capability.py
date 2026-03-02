@@ -22,6 +22,7 @@ class Capability(BaseModel):
             "Workspace.Upload",
             "BackendTool.Invoke",
             "LLM.Call",
+            "Search.Web",
         ],
         Field(description="Capability identifier."),
     ]
