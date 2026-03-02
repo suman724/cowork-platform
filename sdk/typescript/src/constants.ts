@@ -67,6 +67,7 @@ export const EventType = {
   TASK_COMPLETED: "task_completed",
   TASK_FAILED: "task_failed",
   LLM_RETRY: "llm_retry",
+  CONTEXT_COMPACTED: "context_compacted",
   SESSION_COMPLETED: "session_completed",
   SESSION_FAILED: "session_failed",
 } as const;

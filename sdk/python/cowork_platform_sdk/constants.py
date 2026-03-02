@@ -75,6 +75,7 @@ class EventType:
     TASK_COMPLETED: Final = "task_completed"
     TASK_FAILED: Final = "task_failed"
     LLM_RETRY: Final = "llm_retry"
+    CONTEXT_COMPACTED: Final = "context_compacted"
     SESSION_COMPLETED: Final = "session_completed"
     SESSION_FAILED: Final = "session_failed"
 
