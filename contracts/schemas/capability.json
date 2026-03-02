@@ -16,7 +16,8 @@
         "Network.Http",
         "Workspace.Upload",
         "BackendTool.Invoke",
-        "LLM.Call"
+        "LLM.Call",
+        "Search.Web"
       ],
       "description": "Capability identifier."
     },

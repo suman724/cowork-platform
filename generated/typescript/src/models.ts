@@ -259,7 +259,8 @@ export interface Capability {
     | "Network.Http"
     | "Workspace.Upload"
     | "BackendTool.Invoke"
-    | "LLM.Call";
+    | "LLM.Call"
+    | "Search.Web";
   /**
    * Path prefixes where file operations are permitted. Applies to File.Read, File.Write, File.Delete.
    */
