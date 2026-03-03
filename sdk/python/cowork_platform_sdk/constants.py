@@ -27,6 +27,7 @@ class ErrorCode:
     WORKSPACE_UPLOAD_FAILED: Final = "WORKSPACE_UPLOAD_FAILED"
     RATE_LIMITED: Final = "RATE_LIMITED"
     INTERNAL_ERROR: Final = "INTERNAL_ERROR"
+    CODE_EXECUTION_TIMEOUT: Final = "CODE_EXECUTION_TIMEOUT"
 
 
 # --- Retryable Error Codes ---
@@ -53,6 +54,8 @@ class CapabilityName:
     WORKSPACE_UPLOAD: Final = "Workspace.Upload"
     BACKEND_TOOL_INVOKE: Final = "BackendTool.Invoke"
     LLM_CALL: Final = "LLM.Call"
+    SEARCH_WEB: Final = "Search.Web"
+    CODE_EXECUTE: Final = "Code.Execute"
 
 
 # --- Event Types ---
@@ -131,3 +134,4 @@ class ToolTimeout:
     SHELL: Final = 300
     NETWORK: Final = 60
     REMOTE: Final = 120
+    CODE: Final = 120

@@ -260,7 +260,8 @@ export interface Capability {
     | "Workspace.Upload"
     | "BackendTool.Invoke"
     | "LLM.Call"
-    | "Search.Web";
+    | "Search.Web"
+    | "Code.Execute";
   /**
    * Path prefixes where file operations are permitted. Applies to File.Read, File.Write, File.Delete.
    */
@@ -297,6 +298,18 @@ export interface Capability {
    * Reference to the approval rule in the policy bundle's approvalRules array.
    */
   approvalRuleId?: string;
+  /**
+   * Programming languages permitted for Code.Execute (e.g., ['python']).
+   */
+  allowedLanguages?: string[];
+  /**
+   * Maximum execution time per code block in seconds for Code.Execute.
+   */
+  maxExecutionTimeSeconds?: number;
+  /**
+   * Whether code executed via Code.Execute may access the network. Default false.
+   */
+  allowCodeNetwork?: boolean;
 }
 
 // --- conversation-message.json ---

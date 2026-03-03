@@ -212,6 +212,12 @@ class InternalError(CoworkAPIError):
     __init__ = _make_init(ErrorCode.INTERNAL_ERROR, "Internal error", True)
 
 
+class CodeExecutionTimeoutError(CoworkAPIError):
+    """504 — Code execution exceeded the allowed time limit."""
+
+    __init__ = _make_init(ErrorCode.CODE_EXECUTION_TIMEOUT, "Code execution timed out", False)
+
+
 # --- Code-to-class mapping ---
 
 _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
@@ -235,4 +241,5 @@ _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
     ErrorCode.WORKSPACE_UPLOAD_FAILED: WorkspaceUploadError,
     ErrorCode.RATE_LIMITED: RateLimitedError,
     ErrorCode.INTERNAL_ERROR: InternalError,
+    ErrorCode.CODE_EXECUTION_TIMEOUT: CodeExecutionTimeoutError,
 }
