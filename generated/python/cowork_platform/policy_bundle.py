@@ -23,6 +23,7 @@ class Capability(BaseModel):
             "BackendTool.Invoke",
             "LLM.Call",
             "Search.Web",
+            "Code.Execute",
         ],
         Field(description="Capability identifier."),
     ]
@@ -70,6 +71,23 @@ class Capability(BaseModel):
         str | None,
         Field(
             description="Reference to the approval rule in the policy bundle's approvalRules array."
+        ),
+    ] = None
+    allowedLanguages: Annotated[
+        list[str] | None,
+        Field(description="Programming languages permitted for Code.Execute (e.g., ['python'])."),
+    ] = None
+    maxExecutionTimeSeconds: Annotated[
+        int | None,
+        Field(
+            description="Maximum execution time per code block in seconds for Code.Execute.",
+            ge=1,
+        ),
+    ] = None
+    allowCodeNetwork: Annotated[
+        bool | None,
+        Field(
+            description="Whether code executed via Code.Execute may access the network. Default false."
         ),
     ] = None
 

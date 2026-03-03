@@ -13,6 +13,7 @@
     "Workspace.Upload",
     "BackendTool.Invoke",
     "LLM.Call",
-    "Search.Web"
+    "Search.Web",
+    "Code.Execute"
   ]
 }

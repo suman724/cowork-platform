@@ -17,7 +17,8 @@
         "Workspace.Upload",
         "BackendTool.Invoke",
         "LLM.Call",
-        "Search.Web"
+        "Search.Web",
+        "Code.Execute"
       ],
       "description": "Capability identifier."
     },
@@ -63,6 +64,20 @@
     "approvalRuleId": {
       "type": "string",
       "description": "Reference to the approval rule in the policy bundle's approvalRules array."
+    },
+    "allowedLanguages": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Programming languages permitted for Code.Execute (e.g., ['python'])."
+    },
+    "maxExecutionTimeSeconds": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum execution time per code block in seconds for Code.Execute."
+    },
+    "allowCodeNetwork": {
+      "type": "boolean",
+      "description": "Whether code executed via Code.Execute may access the network. Default false."
     }
   },
   "additionalProperties": false
