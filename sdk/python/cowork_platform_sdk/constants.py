@@ -81,6 +81,11 @@ class EventType:
     CONTEXT_COMPACTED: Final = "context_compacted"
     SESSION_COMPLETED: Final = "session_completed"
     SESSION_FAILED: Final = "session_failed"
+    CHECKPOINT_SAVED: Final = "checkpoint_saved"
+    CHECKPOINT_RESTORED: Final = "checkpoint_restored"
+    CHECKPOINT_FAILED: Final = "checkpoint_failed"
+    WORKSPACE_SYNC_COMPLETED: Final = "workspace_sync_completed"
+    WORKSPACE_SYNC_FAILED: Final = "workspace_sync_failed"
 
 
 # --- Component Names ---
