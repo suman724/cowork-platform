@@ -47,6 +47,11 @@
       "items": { "type": "string" },
       "description": "Domains permitted for Network.Http requests."
     },
+    "blockedDomains": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Domains explicitly denied for Network.Http requests. Takes precedence over allowedDomains."
+    },
     "maxFileSizeBytes": {
       "type": "integer",
       "minimum": 0,
