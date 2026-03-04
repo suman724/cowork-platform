@@ -49,6 +49,12 @@ class Capability(BaseModel):
         list[str] | None,
         Field(description="Domains permitted for Network.Http requests."),
     ] = None
+    blockedDomains: Annotated[
+        list[str] | None,
+        Field(
+            description="Domains explicitly denied for Network.Http requests. Takes precedence over allowedDomains."
+        ),
+    ] = None
     maxFileSizeBytes: Annotated[
         int | None,
         Field(
