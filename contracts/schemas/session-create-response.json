@@ -23,6 +23,10 @@
       "$ref": "policy-bundle.json",
       "description": "Policy bundle for this session. Present when compatibilityStatus is 'compatible'."
     },
+    "name": {
+      "type": "string",
+      "description": "Session name (empty until auto-named from first user prompt)."
+    },
     "featureFlags": {
       "type": "object",
       "description": "Feature flags for this session.",

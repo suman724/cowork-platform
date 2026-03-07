@@ -51,6 +51,16 @@
       "type": "string",
       "format": "date-time",
       "description": "Policy bundle expiry — session must not continue past this."
+    },
+    "name": {
+      "type": "string",
+      "default": "",
+      "description": "Human-readable session name. Auto-generated from the first user prompt if not explicitly set."
+    },
+    "autoNamed": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the name was auto-generated (true) or explicitly set by the user (false)."
     }
   },
   "additionalProperties": false

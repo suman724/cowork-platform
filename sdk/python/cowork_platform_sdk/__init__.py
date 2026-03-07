@@ -7,6 +7,7 @@ from cowork_platform_sdk.constants import (
     EventType,
     RiskLevel,
     SessionStatus,
+    TaskStatus,
     ToolTimeout,
 )
 from cowork_platform_sdk.errors import (
@@ -58,6 +59,7 @@ __all__ = [
     "SessionExpiredError",
     "SessionNotFoundError",
     "SessionStatus",
+    "TaskStatus",
     "ToolExecutionError",
     "ToolExecutionTimeoutError",
     "ToolNotFoundError",

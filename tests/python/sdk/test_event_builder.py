@@ -73,6 +73,28 @@ class TestBuildEvent:
         # severity defaults to "info" and is omitted
         assert "severity" not in event
 
+    def test_step_id_included_when_provided(self) -> None:
+        event = build_event(
+            event_type=EventType.STEP_STARTED,
+            component=Component.LOCAL_AGENT_HOST,
+            tenant_id="t",
+            user_id="u",
+            session_id="s",
+            task_id="task_001",
+            step_id="step_abc",
+        )
+        assert event["stepId"] == "step_abc"
+
+    def test_step_id_omitted_when_none(self) -> None:
+        event = build_event(
+            event_type=EventType.STEP_STARTED,
+            component=Component.LOCAL_AGENT_HOST,
+            tenant_id="t",
+            user_id="u",
+            session_id="s",
+        )
+        assert "stepId" not in event
+
     def test_unique_event_ids(self) -> None:
         events = [
             build_event(

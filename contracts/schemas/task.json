@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/task.json",
+  "title": "Task",
+  "description": "A single agent work cycle triggered by one user prompt.",
+  "type": "object",
+  "required": ["taskId", "sessionId", "prompt", "status", "createdAt"],
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique task identifier."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "Session this task belongs to."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Workspace context (denormalized from session)."
+    },
+    "tenantId": {
+      "type": "string",
+      "description": "Tenant context (denormalized from session)."
+    },
+    "userId": {
+      "type": "string",
+      "description": "User context (denormalized from session)."
+    },
+    "prompt": {
+      "type": "string",
+      "description": "User instruction that triggered this task."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["running", "completed", "failed", "cancelled"],
+      "description": "Current task status."
+    },
+    "stepCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of steps completed so far."
+    },
+    "maxSteps": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum steps allowed for this task."
+    },
+    "completionReason": {
+      "type": "string",
+      "description": "Why the task ended (e.g. 'completed', 'max_steps_exceeded', 'cancelled')."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the task was created."
+    },
+    "completedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the task finished (null while running)."
+    }
+  },
+  "additionalProperties": false
+}

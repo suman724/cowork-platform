@@ -15,6 +15,7 @@ from cowork_platform.session_cancel_request import *  # noqa: F403
 from cowork_platform.session_create_request import *  # noqa: F403
 from cowork_platform.session_create_response import *  # noqa: F403
 from cowork_platform.session_resume_request import *  # noqa: F403
+from cowork_platform.task import *  # noqa: F403
 from cowork_platform.tool_definition import *  # noqa: F403
 from cowork_platform.tool_request import *  # noqa: F403
 from cowork_platform.tool_result import *  # noqa: F403

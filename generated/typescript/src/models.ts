@@ -283,6 +283,10 @@ export interface Capability {
    */
   allowedDomains?: string[];
   /**
+   * Domains explicitly denied for Network.Http requests. Takes precedence over allowedDomains.
+   */
+  blockedDomains?: string[];
+  /**
    * Maximum file size in bytes for file operations and artifact uploads.
    */
   maxFileSizeBytes?: number;
@@ -388,8 +392,10 @@ export interface EventEnvelope {
     | "approval_requested"
     | "approval_resolved"
     | "policy_expired"
+    | "task_started"
     | "task_completed"
     | "task_failed"
+    | "task_cancelled"
     | "llm_retry"
     | "context_compacted"
     | "session_completed"
@@ -418,6 +424,10 @@ export interface EventEnvelope {
    * Task context (if applicable).
    */
   taskId?: string;
+  /**
+   * Step context (if applicable).
+   */
+  stepId?: string;
   /**
    * Component that emitted this event.
    */
@@ -611,6 +621,10 @@ export interface SessionCreateResponse {
   compatibilityStatus: "compatible" | "incompatible";
   policyBundle?: PolicyBundle;
   /**
+   * Session name (empty until auto-named from first user prompt).
+   */
+  name?: string;
+  /**
    * Feature flags for this session.
    */
   featureFlags?: {
@@ -690,6 +704,69 @@ export interface Session {
    * Policy bundle expiry — session must not continue past this.
    */
   expiresAt: string;
+  /**
+   * Human-readable session name. Auto-generated from the first user prompt if not explicitly set.
+   */
+  name?: string;
+  /**
+   * Whether the name was auto-generated (true) or explicitly set by the user (false).
+   */
+  autoNamed?: boolean;
+}
+
+// --- task.json ---
+/**
+ * A single agent work cycle triggered by one user prompt.
+ */
+export interface Task {
+  /**
+   * Unique task identifier.
+   */
+  taskId: string;
+  /**
+   * Session this task belongs to.
+   */
+  sessionId: string;
+  /**
+   * Workspace context (denormalized from session).
+   */
+  workspaceId?: string;
+  /**
+   * Tenant context (denormalized from session).
+   */
+  tenantId?: string;
+  /**
+   * User context (denormalized from session).
+   */
+  userId?: string;
+  /**
+   * User instruction that triggered this task.
+   */
+  prompt: string;
+  /**
+   * Current task status.
+   */
+  status: "running" | "completed" | "failed" | "cancelled";
+  /**
+   * Number of steps completed so far.
+   */
+  stepCount?: number;
+  /**
+   * Maximum steps allowed for this task.
+   */
+  maxSteps?: number;
+  /**
+   * Why the task ended (e.g. 'completed', 'max_steps_exceeded', 'cancelled').
+   */
+  completionReason?: string;
+  /**
+   * When the task was created.
+   */
+  createdAt: string;
+  /**
+   * When the task finished (null while running).
+   */
+  completedAt?: string;
 }
 
 // --- tool-definition.json ---

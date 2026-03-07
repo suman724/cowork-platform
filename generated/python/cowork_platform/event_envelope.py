@@ -29,8 +29,10 @@ class EventEnvelope(BaseModel):
             "approval_requested",
             "approval_resolved",
             "policy_expired",
+            "task_started",
             "task_completed",
             "task_failed",
+            "task_cancelled",
             "llm_retry",
             "context_compacted",
             "session_completed",
@@ -46,6 +48,7 @@ class EventEnvelope(BaseModel):
     )
     sessionId: Annotated[str, Field(description="Session context.")]
     taskId: Annotated[str | None, Field(description="Task context (if applicable).")] = None
+    stepId: Annotated[str | None, Field(description="Step context (if applicable).")] = None
     component: Annotated[
         Literal[
             "DesktopApp",

@@ -41,3 +41,15 @@ class Session(BaseModel):
         AwareDatetime,
         Field(description="Policy bundle expiry — session must not continue past this."),
     ]
+    name: Annotated[
+        str | None,
+        Field(
+            description="Human-readable session name. Auto-generated from the first user prompt if not explicitly set."
+        ),
+    ] = ""
+    autoNamed: Annotated[
+        bool | None,
+        Field(
+            description="Whether the name was auto-generated (true) or explicitly set by the user (false)."
+        ),
+    ] = True

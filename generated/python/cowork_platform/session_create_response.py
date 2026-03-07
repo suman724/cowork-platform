@@ -193,6 +193,10 @@ class SessionCreateResponse(BaseModel):
             description="Policy bundle for this session. Present when compatibilityStatus is 'compatible'."
         ),
     ] = None
+    name: Annotated[
+        str | None,
+        Field(description="Session name (empty until auto-named from first user prompt)."),
+    ] = None
     featureFlags: Annotated[
         FeatureFlags | None, Field(description="Feature flags for this session.")
     ] = None

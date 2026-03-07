@@ -20,6 +20,7 @@ def build_event(
     session_id: str,
     workspace_id: str | None = None,
     task_id: str | None = None,
+    step_id: str | None = None,
     bounded_context: str | None = None,
     severity: str = "info",
     payload: dict[str, Any] | None = None,
@@ -34,6 +35,7 @@ def build_event(
         session_id: Session context.
         workspace_id: Workspace context (optional).
         task_id: Task context (optional).
+        step_id: Step context (optional).
         bounded_context: Bounded context of the emitting component.
         severity: Event severity (debug, info, warning, error, critical).
         payload: Event-specific payload data.
@@ -56,6 +58,8 @@ def build_event(
         envelope["workspaceId"] = workspace_id
     if task_id is not None:
         envelope["taskId"] = task_id
+    if step_id is not None:
+        envelope["stepId"] = step_id
     if bounded_context is not None:
         envelope["boundedContext"] = bounded_context
     if severity != "info":
