@@ -91,6 +91,7 @@ class EventType:
     PLAN_MODE_CHANGED: Final = "plan_mode_changed"
     VERIFICATION_STARTED: Final = "verification_started"
     VERIFICATION_COMPLETED: Final = "verification_completed"
+    PLAN_UPDATED: Final = "plan_updated"
 
 
 # --- Component Names ---
