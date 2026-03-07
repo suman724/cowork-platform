@@ -88,6 +88,9 @@ class EventType:
     CHECKPOINT_FAILED: Final = "checkpoint_failed"
     WORKSPACE_SYNC_COMPLETED: Final = "workspace_sync_completed"
     WORKSPACE_SYNC_FAILED: Final = "workspace_sync_failed"
+    PLAN_MODE_CHANGED: Final = "plan_mode_changed"
+    VERIFICATION_STARTED: Final = "verification_started"
+    VERIFICATION_COMPLETED: Final = "verification_completed"
 
 
 # --- Component Names ---
