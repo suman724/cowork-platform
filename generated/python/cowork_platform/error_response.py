@@ -34,6 +34,12 @@ class ErrorResponse(BaseModel):
             "WORKSPACE_UPLOAD_FAILED",
             "RATE_LIMITED",
             "INTERNAL_ERROR",
+            "CODE_EXECUTION_TIMEOUT",
+            "TEAM_MODE_DISABLED",
+            "TEAM_WORKSPACE_INVALID",
+            "TEAMMATE_BUDGET_EXCEEDED",
+            "TEAMMATE_LIMIT_EXCEEDED",
+            "TASK_DEPENDENCY_CYCLE",
         ],
         Field(description="Machine-readable error code."),
     ]

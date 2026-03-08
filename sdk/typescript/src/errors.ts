@@ -212,6 +212,42 @@ export const InternalError = defineError(
   "Internal error",
   true,
 );
+export const CodeExecutionTimeoutError = defineError(
+  "CodeExecutionTimeoutError",
+  ErrorCode.CODE_EXECUTION_TIMEOUT,
+  "Code execution timed out",
+  false,
+);
+export const TeamModeDisabledError = defineError(
+  "TeamModeDisabledError",
+  ErrorCode.TEAM_MODE_DISABLED,
+  "Team mode disabled",
+  false,
+);
+export const TeamWorkspaceInvalidError = defineError(
+  "TeamWorkspaceInvalidError",
+  ErrorCode.TEAM_WORKSPACE_INVALID,
+  "Team workspace invalid",
+  false,
+);
+export const TeammateBudgetExceededError = defineError(
+  "TeammateBudgetExceededError",
+  ErrorCode.TEAMMATE_BUDGET_EXCEEDED,
+  "Teammate budget exceeded",
+  false,
+);
+export const TeammateLimitExceededError = defineError(
+  "TeammateLimitExceededError",
+  ErrorCode.TEAMMATE_LIMIT_EXCEEDED,
+  "Teammate limit exceeded",
+  false,
+);
+export const TaskDependencyCycleError = defineError(
+  "TaskDependencyCycleError",
+  ErrorCode.TASK_DEPENDENCY_CYCLE,
+  "Task dependency cycle",
+  false,
+);
 
 // --- Code-to-class mapping ---
 
@@ -236,4 +272,10 @@ const CODE_TO_CLASS = new Map<string, CoworkSubErrorConstructor>([
   [ErrorCode.WORKSPACE_UPLOAD_FAILED, WorkspaceUploadError],
   [ErrorCode.RATE_LIMITED, RateLimitedError],
   [ErrorCode.INTERNAL_ERROR, InternalError],
+  [ErrorCode.CODE_EXECUTION_TIMEOUT, CodeExecutionTimeoutError],
+  [ErrorCode.TEAM_MODE_DISABLED, TeamModeDisabledError],
+  [ErrorCode.TEAM_WORKSPACE_INVALID, TeamWorkspaceInvalidError],
+  [ErrorCode.TEAMMATE_BUDGET_EXCEEDED, TeammateBudgetExceededError],
+  [ErrorCode.TEAMMATE_LIMIT_EXCEEDED, TeammateLimitExceededError],
+  [ErrorCode.TASK_DEPENDENCY_CYCLE, TaskDependencyCycleError],
 ]);

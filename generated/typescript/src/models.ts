@@ -349,7 +349,13 @@ export interface ErrorResponse {
     | "LLM_BUDGET_EXCEEDED"
     | "WORKSPACE_UPLOAD_FAILED"
     | "RATE_LIMITED"
-    | "INTERNAL_ERROR";
+    | "INTERNAL_ERROR"
+    | "CODE_EXECUTION_TIMEOUT"
+    | "TEAM_MODE_DISABLED"
+    | "TEAM_WORKSPACE_INVALID"
+    | "TEAMMATE_BUDGET_EXCEEDED"
+    | "TEAMMATE_LIMIT_EXCEEDED"
+    | "TASK_DEPENDENCY_CYCLE";
   /**
    * Human-readable error description.
    */

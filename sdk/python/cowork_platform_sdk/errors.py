@@ -218,6 +218,36 @@ class CodeExecutionTimeoutError(CoworkAPIError):
     __init__ = _make_init(ErrorCode.CODE_EXECUTION_TIMEOUT, "Code execution timed out", False)
 
 
+class TeamModeDisabledError(CoworkAPIError):
+    """403 — Team feature is not enabled for this session."""
+
+    __init__ = _make_init(ErrorCode.TEAM_MODE_DISABLED, "Team mode disabled", False)
+
+
+class TeamWorkspaceInvalidError(CoworkAPIError):
+    """400 — Workspace does not support team operations."""
+
+    __init__ = _make_init(ErrorCode.TEAM_WORKSPACE_INVALID, "Team workspace invalid", False)
+
+
+class TeammateBudgetExceededError(CoworkAPIError):
+    """429 — Teammate's token budget has been exceeded."""
+
+    __init__ = _make_init(ErrorCode.TEAMMATE_BUDGET_EXCEEDED, "Teammate budget exceeded", False)
+
+
+class TeammateLimitExceededError(CoworkAPIError):
+    """400 — Maximum number of teammates has been reached."""
+
+    __init__ = _make_init(ErrorCode.TEAMMATE_LIMIT_EXCEEDED, "Teammate limit exceeded", False)
+
+
+class TaskDependencyCycleError(CoworkAPIError):
+    """400 — Circular dependency detected in team task list."""
+
+    __init__ = _make_init(ErrorCode.TASK_DEPENDENCY_CYCLE, "Task dependency cycle", False)
+
+
 # --- Code-to-class mapping ---
 
 _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
@@ -242,4 +272,9 @@ _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
     ErrorCode.RATE_LIMITED: RateLimitedError,
     ErrorCode.INTERNAL_ERROR: InternalError,
     ErrorCode.CODE_EXECUTION_TIMEOUT: CodeExecutionTimeoutError,
+    ErrorCode.TEAM_MODE_DISABLED: TeamModeDisabledError,
+    ErrorCode.TEAM_WORKSPACE_INVALID: TeamWorkspaceInvalidError,
+    ErrorCode.TEAMMATE_BUDGET_EXCEEDED: TeammateBudgetExceededError,
+    ErrorCode.TEAMMATE_LIMIT_EXCEEDED: TeammateLimitExceededError,
+    ErrorCode.TASK_DEPENDENCY_CYCLE: TaskDependencyCycleError,
 }
