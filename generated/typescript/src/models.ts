@@ -349,7 +349,13 @@ export interface ErrorResponse {
     | "LLM_BUDGET_EXCEEDED"
     | "WORKSPACE_UPLOAD_FAILED"
     | "RATE_LIMITED"
-    | "INTERNAL_ERROR";
+    | "INTERNAL_ERROR"
+    | "CODE_EXECUTION_TIMEOUT"
+    | "TEAM_MODE_DISABLED"
+    | "TEAM_WORKSPACE_INVALID"
+    | "TEAMMATE_BUDGET_EXCEEDED"
+    | "TEAMMATE_LIMIT_EXCEEDED"
+    | "TASK_DEPENDENCY_CYCLE";
   /**
    * Human-readable error description.
    */
@@ -499,6 +505,7 @@ export interface PolicyBundle {
    * Approval rules referenced by capabilities via approvalRuleId.
    */
   approvalRules: ApprovalRule[];
+  teamPolicy?: TeamPolicy;
 }
 /**
  * A single capability entry in a policy bundle. Defines what the agent is permitted to do with scope constraints.
@@ -536,6 +543,23 @@ export interface ApprovalRule {
    * Explanation shown in the approval dialog.
    */
   description: string;
+}
+/**
+ * Optional team policy constraints. When absent, team creation is disabled.
+ */
+export interface TeamPolicy {
+  /**
+   * Maximum number of concurrent teammates the lead can spawn.
+   */
+  maxTeammates: number;
+  /**
+   * Default token budget allocated to each teammate.
+   */
+  teammateBudget: number;
+  /**
+   * Optional allowlist of teammate roles. When empty or absent, all roles are permitted.
+   */
+  allowedRoles?: string[];
 }
 
 // --- session-cancel-request.json ---

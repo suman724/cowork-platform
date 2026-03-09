@@ -128,6 +128,29 @@ class ApprovalRule(BaseModel):
     description: Annotated[str, Field(description="Explanation shown in the approval dialog.")]
 
 
+class TeamPolicy(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    maxTeammates: Annotated[
+        int,
+        Field(
+            description="Maximum number of concurrent teammates the lead can spawn.",
+            ge=1,
+            le=20,
+        ),
+    ]
+    teammateBudget: Annotated[
+        int, Field(description="Default token budget allocated to each teammate.", ge=1)
+    ]
+    allowedRoles: Annotated[
+        list[str] | None,
+        Field(
+            description="Optional allowlist of teammate roles. When empty or absent, all roles are permitted."
+        ),
+    ] = None
+
+
 class PolicyBundle(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -163,3 +186,9 @@ class PolicyBundle(BaseModel):
         list[ApprovalRule],
         Field(description="Approval rules referenced by capabilities via approvalRuleId."),
     ]
+    teamPolicy: Annotated[
+        TeamPolicy | None,
+        Field(
+            description="Optional team policy constraints. When absent, team creation is disabled."
+        ),
+    ] = None

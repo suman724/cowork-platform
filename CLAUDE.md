@@ -35,7 +35,7 @@ sdk/
 |--------|---------|
 | `ToolRequest` / `ToolResult` | Agent Host ↔ Tool Runtime |
 | `ToolDefinition` | Tool Runtime → LLM (via Agent Host) |
-| `PolicyBundle` | Policy Service → Session Service → Agent Host |
+| `PolicyBundle` | Policy Service → Session Service → Agent Host (includes optional `TeamPolicy`) |
 | `ConversationMessage` | Agent Host → Workspace Service (session_history artifact) |
 | `ApprovalRequest` | Agent Host → Desktop App (approval modal) |
 | Event envelope | All components → Audit/Telemetry Services |
@@ -47,7 +47,7 @@ All error responses across the system use one shape:
 { "code": "...", "message": "...", "retryable": false, "details": {} }
 ```
 
-Standard codes: `INVALID_REQUEST`, `UNAUTHORIZED`, `SESSION_NOT_FOUND`, `SESSION_EXPIRED`, `POLICY_BUNDLE_INVALID`, `POLICY_EXPIRED`, `CAPABILITY_DENIED`, `APPROVAL_REQUIRED`, `APPROVAL_DENIED`, `TOOL_NOT_FOUND`, `TOOL_EXECUTION_FAILED`, `TOOL_EXECUTION_TIMEOUT`, `FILE_NOT_FOUND`, `FILE_TOO_LARGE`, `PERMISSION_DENIED`, `LLM_GUARDRAIL_BLOCKED`, `LLM_BUDGET_EXCEEDED`, `WORKSPACE_UPLOAD_FAILED`, `RATE_LIMITED`, `INTERNAL_ERROR`
+Standard codes: `INVALID_REQUEST`, `UNAUTHORIZED`, `SESSION_NOT_FOUND`, `SESSION_EXPIRED`, `POLICY_BUNDLE_INVALID`, `POLICY_EXPIRED`, `CAPABILITY_DENIED`, `APPROVAL_REQUIRED`, `APPROVAL_DENIED`, `TOOL_NOT_FOUND`, `TOOL_EXECUTION_FAILED`, `TOOL_EXECUTION_TIMEOUT`, `FILE_NOT_FOUND`, `FILE_TOO_LARGE`, `PERMISSION_DENIED`, `LLM_GUARDRAIL_BLOCKED`, `LLM_BUDGET_EXCEEDED`, `WORKSPACE_UPLOAD_FAILED`, `RATE_LIMITED`, `INTERNAL_ERROR`, `CODE_EXECUTION_TIMEOUT`, `TEAM_MODE_DISABLED`, `TEAM_WORKSPACE_INVALID`, `TEAMMATE_BUDGET_EXCEEDED`, `TEAMMATE_LIMIT_EXCEEDED`, `TASK_DEPENDENCY_CYCLE`
 
 ## Shared Enums
 
@@ -59,7 +59,18 @@ Component values: `DesktopApp`, `LocalAgentHost`, `LocalToolRuntime`, `LocalPoli
 
 Desktop App → Local Agent Host: `CreateSession`, `StartTask`, `CancelTask`, `ResumeSession`, `GetSessionState`, `GetPatchPreview`, `ApproveAction`, `Shutdown`
 
-Local Agent Host → Desktop App (notifications): `SessionEvent`
+Local Agent Host → Desktop App (notifications): `SessionEvent`, `team/*` (6 team notification methods)
+
+## Agent Teams Contracts
+
+The `PolicyBundle` schema includes an optional `teamPolicy` section (`TeamPolicy` type) that controls team behavior:
+- `maxTeammates` (int, 1–20): Maximum concurrent teammates
+- `teammateBudget` (int, ≥1): Default token budget per teammate
+- `allowedRoles` (string[]): Optional role allowlist (empty = all permitted)
+
+When `teamPolicy` is absent, team creation is disabled. Team error codes: `TEAM_MODE_DISABLED`, `TEAM_WORKSPACE_INVALID`, `TEAMMATE_BUDGET_EXCEEDED`, `TEAMMATE_LIMIT_EXCEEDED`, `TASK_DEPENDENCY_CYCLE`.
+
+Team JSON-RPC notifications bypass the `SessionEvent` envelope and use `team/*` method names: `team/created`, `team/teammate_created`, `team/teammate_removed`, `team/task_updated`, `team/message`, `team/teammate_output`.
 
 ---
 

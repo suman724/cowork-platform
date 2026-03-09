@@ -54,6 +54,10 @@
       "type": "array",
       "items": { "$ref": "#/$defs/ApprovalRule" },
       "description": "Approval rules referenced by capabilities via approvalRuleId."
+    },
+    "teamPolicy": {
+      "$ref": "#/$defs/TeamPolicy",
+      "description": "Optional team policy constraints. When absent, team creation is disabled."
     }
   },
   "additionalProperties": false,
@@ -101,6 +105,29 @@
         "description": {
           "type": "string",
           "description": "Explanation shown in the approval dialog."
+        }
+      },
+      "additionalProperties": false
+    },
+    "TeamPolicy": {
+      "type": "object",
+      "required": ["maxTeammates", "teammateBudget"],
+      "properties": {
+        "maxTeammates": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Maximum number of concurrent teammates the lead can spawn."
+        },
+        "teammateBudget": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Default token budget allocated to each teammate."
+        },
+        "allowedRoles": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional allowlist of teammate roles. When empty or absent, all roles are permitted."
         }
       },
       "additionalProperties": false
