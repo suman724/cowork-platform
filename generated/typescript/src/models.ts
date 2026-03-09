@@ -505,6 +505,7 @@ export interface PolicyBundle {
    * Approval rules referenced by capabilities via approvalRuleId.
    */
   approvalRules: ApprovalRule[];
+  teamPolicy?: TeamPolicy;
 }
 /**
  * A single capability entry in a policy bundle. Defines what the agent is permitted to do with scope constraints.
@@ -542,6 +543,23 @@ export interface ApprovalRule {
    * Explanation shown in the approval dialog.
    */
   description: string;
+}
+/**
+ * Optional team policy constraints. When absent, team creation is disabled.
+ */
+export interface TeamPolicy {
+  /**
+   * Maximum number of concurrent teammates the lead can spawn.
+   */
+  maxTeammates: number;
+  /**
+   * Default token budget allocated to each teammate.
+   */
+  teammateBudget: number;
+  /**
+   * Optional allowlist of teammate roles. When empty or absent, all roles are permitted.
+   */
+  allowedRoles?: string[];
 }
 
 // --- session-cancel-request.json ---
