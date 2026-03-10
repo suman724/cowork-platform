@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/workspace-file-upload-response.json",
+  "title": "WorkspaceFileUploadResponse",
+  "description": "Response after uploading files to a cloud workspace.",
+  "type": "object",
+  "required": ["files"],
+  "properties": {
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "size"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative path of the uploaded file within the workspace."
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "File size in bytes."
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME content type of the file."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "List of files that were uploaded."
+    },
+    "totalSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total size of all uploaded files in bytes."
+    }
+  },
+  "additionalProperties": false
+}

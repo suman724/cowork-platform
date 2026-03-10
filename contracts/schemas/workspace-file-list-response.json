@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/workspace-file-list-response.json",
+  "title": "WorkspaceFileListResponse",
+  "description": "Response listing files in a cloud workspace.",
+  "type": "object",
+  "required": ["files"],
+  "properties": {
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "size", "lastModified"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Relative path within the workspace."
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "File size in bytes."
+          },
+          "contentType": {
+            "type": "string",
+            "description": "MIME content type of the file."
+          },
+          "lastModified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last modification time."
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "List of files in the workspace."
+    },
+    "totalFiles": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of files in the workspace."
+    },
+    "totalSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total size of all files in bytes."
+    }
+  },
+  "additionalProperties": false
+}

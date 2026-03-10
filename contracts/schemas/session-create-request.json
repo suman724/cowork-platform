@@ -59,6 +59,12 @@
       "type": "array",
       "items": { "type": "string" },
       "description": "Capabilities the client supports (e.g., File.Read, Shell.Exec)."
+    },
+    "networkAccess": {
+      "type": "string",
+      "enum": ["enabled", "disabled"],
+      "default": "enabled",
+      "description": "Whether the sandbox has outbound internet access. Only applicable for cloud_sandbox sessions."
     }
   },
   "additionalProperties": false

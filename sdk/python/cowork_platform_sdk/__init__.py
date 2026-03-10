@@ -14,6 +14,7 @@ from cowork_platform_sdk.errors import (
     ApprovalDeniedError,
     ApprovalRequiredError,
     CapabilityDeniedError,
+    ConcurrentSessionLimitError,
     CoworkAPIError,
     InternalError,
     InvalidRequestError,
@@ -24,7 +25,10 @@ from cowork_platform_sdk.errors import (
     PolicyBundleInvalidError,
     PolicyExpiredError,
     RateLimitedError,
+    SandboxProvisionFailedError,
+    SandboxUnreachableError,
     SessionExpiredError,
+    SessionNotActiveError,
     SessionNotFoundError,
     ToolExecutionError,
     ToolExecutionTimeoutError,
@@ -36,13 +40,12 @@ from cowork_platform_sdk.event_builder import build_event
 from cowork_platform_sdk.http_client import create_http_client, raise_for_status
 
 __all__ = [
-    # Errors
     "ApprovalDeniedError",
     "ApprovalRequiredError",
     "CapabilityDeniedError",
-    # Constants
     "CapabilityName",
     "Component",
+    "ConcurrentSessionLimitError",
     "CoworkAPIError",
     "ErrorCode",
     "EventType",
@@ -56,7 +59,10 @@ __all__ = [
     "PolicyExpiredError",
     "RateLimitedError",
     "RiskLevel",
+    "SandboxProvisionFailedError",
+    "SandboxUnreachableError",
     "SessionExpiredError",
+    "SessionNotActiveError",
     "SessionNotFoundError",
     "SessionStatus",
     "TaskStatus",
@@ -66,9 +72,7 @@ __all__ = [
     "ToolTimeout",
     "UnauthorizedError",
     "WorkspaceUploadError",
-    # Builders
     "build_event",
-    # HTTP
     "create_http_client",
     "raise_for_status",
 ]

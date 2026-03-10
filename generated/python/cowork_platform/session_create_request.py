@@ -49,3 +49,9 @@ class SessionCreateRequest(BaseModel):
         list[str],
         Field(description="Capabilities the client supports (e.g., File.Read, Shell.Exec)."),
     ]
+    networkAccess: Annotated[
+        Literal["enabled", "disabled"] | None,
+        Field(
+            description="Whether the sandbox has outbound internet access. Only applicable for cloud_sandbox sessions."
+        ),
+    ] = "enabled"

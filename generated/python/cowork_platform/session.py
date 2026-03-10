@@ -33,6 +33,9 @@ class Session(BaseModel):
             "SESSION_COMPLETED",
             "SESSION_FAILED",
             "SESSION_CANCELLED",
+            "SANDBOX_PROVISIONING",
+            "SANDBOX_READY",
+            "SANDBOX_TERMINATED",
         ],
         Field(description="Current session state machine state."),
     ]
@@ -53,3 +56,33 @@ class Session(BaseModel):
             description="Whether the name was auto-generated (true) or explicitly set by the user (false)."
         ),
     ] = True
+    sandboxEndpoint: Annotated[
+        str | None,
+        Field(
+            description="Internal IP:port of the sandbox container. Present only for cloud_sandbox sessions after registration."
+        ),
+    ] = None
+    taskArn: Annotated[
+        str | None,
+        Field(
+            description="ECS task ARN for sandbox lifecycle management. Present only for cloud_sandbox sessions."
+        ),
+    ] = None
+    expectedTaskArn: Annotated[
+        str | None,
+        Field(
+            description="ECS task ARN stored at RunTask time. Used to validate sandbox registration."
+        ),
+    ] = None
+    networkAccess: Annotated[
+        Literal["enabled", "disabled"] | None,
+        Field(
+            description="Whether the sandbox has outbound internet access. Present only for cloud_sandbox sessions."
+        ),
+    ] = None
+    lastActivityAt: Annotated[
+        AwareDatetime | None,
+        Field(
+            description="Last user interaction time. Used for idle timeout. Present only for cloud_sandbox sessions."
+        ),
+    ] = None

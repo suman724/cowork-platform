@@ -10,6 +10,8 @@ from cowork_platform.conversation_message import *  # noqa: F403
 from cowork_platform.error_response import *  # noqa: F403
 from cowork_platform.event_envelope import *  # noqa: F403
 from cowork_platform.policy_bundle import *  # noqa: F403
+from cowork_platform.sandbox_registration_request import *  # noqa: F403
+from cowork_platform.sandbox_registration_response import *  # noqa: F403
 from cowork_platform.session import *  # noqa: F403
 from cowork_platform.session_cancel_request import *  # noqa: F403
 from cowork_platform.session_create_request import *  # noqa: F403
@@ -23,3 +25,5 @@ from cowork_platform.trace_span import *  # noqa: F403
 from cowork_platform.workspace import *  # noqa: F403
 from cowork_platform.workspace_create_request import *  # noqa: F403
 from cowork_platform.workspace_create_response import *  # noqa: F403
+from cowork_platform.workspace_file_list_response import *  # noqa: F403
+from cowork_platform.workspace_file_upload_response import *  # noqa: F403

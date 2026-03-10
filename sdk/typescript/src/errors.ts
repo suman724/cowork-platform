@@ -212,6 +212,36 @@ export const InternalError = defineError(
   "Internal error",
   true,
 );
+export const CodeExecutionTimeoutError = defineError(
+  "CodeExecutionTimeoutError",
+  ErrorCode.CODE_EXECUTION_TIMEOUT,
+  "Code execution timed out",
+  false,
+);
+export const SandboxUnreachableError = defineError(
+  "SandboxUnreachableError",
+  ErrorCode.SANDBOX_UNREACHABLE,
+  "Sandbox unreachable",
+  true,
+);
+export const SandboxProvisionFailedError = defineError(
+  "SandboxProvisionFailedError",
+  ErrorCode.SANDBOX_PROVISION_FAILED,
+  "Sandbox provisioning failed",
+  false,
+);
+export const ConcurrentSessionLimitError = defineError(
+  "ConcurrentSessionLimitError",
+  ErrorCode.CONCURRENT_SESSION_LIMIT,
+  "Concurrent session limit reached",
+  false,
+);
+export const SessionNotActiveError = defineError(
+  "SessionNotActiveError",
+  ErrorCode.SESSION_NOT_ACTIVE,
+  "Session not active",
+  false,
+);
 
 // --- Code-to-class mapping ---
 
@@ -236,4 +266,9 @@ const CODE_TO_CLASS = new Map<string, CoworkSubErrorConstructor>([
   [ErrorCode.WORKSPACE_UPLOAD_FAILED, WorkspaceUploadError],
   [ErrorCode.RATE_LIMITED, RateLimitedError],
   [ErrorCode.INTERNAL_ERROR, InternalError],
+  [ErrorCode.CODE_EXECUTION_TIMEOUT, CodeExecutionTimeoutError],
+  [ErrorCode.SANDBOX_UNREACHABLE, SandboxUnreachableError],
+  [ErrorCode.SANDBOX_PROVISION_FAILED, SandboxProvisionFailedError],
+  [ErrorCode.CONCURRENT_SESSION_LIMIT, ConcurrentSessionLimitError],
+  [ErrorCode.SESSION_NOT_ACTIVE, SessionNotActiveError],
 ]);

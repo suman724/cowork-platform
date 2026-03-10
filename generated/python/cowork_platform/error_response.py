@@ -34,6 +34,11 @@ class ErrorResponse(BaseModel):
             "WORKSPACE_UPLOAD_FAILED",
             "RATE_LIMITED",
             "INTERNAL_ERROR",
+            "CODE_EXECUTION_TIMEOUT",
+            "SANDBOX_UNREACHABLE",
+            "SANDBOX_PROVISION_FAILED",
+            "CONCURRENT_SESSION_LIMIT",
+            "SESSION_NOT_ACTIVE",
         ],
         Field(description="Machine-readable error code."),
     ]

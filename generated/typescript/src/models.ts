@@ -349,7 +349,12 @@ export interface ErrorResponse {
     | "LLM_BUDGET_EXCEEDED"
     | "WORKSPACE_UPLOAD_FAILED"
     | "RATE_LIMITED"
-    | "INTERNAL_ERROR";
+    | "INTERNAL_ERROR"
+    | "CODE_EXECUTION_TIMEOUT"
+    | "SANDBOX_UNREACHABLE"
+    | "SANDBOX_PROVISION_FAILED"
+    | "CONCURRENT_SESSION_LIMIT"
+    | "SESSION_NOT_ACTIVE";
   /**
    * Human-readable error description.
    */
@@ -538,6 +543,48 @@ export interface ApprovalRule {
   description: string;
 }
 
+// --- sandbox-registration-request.json ---
+/**
+ * Request sent by a sandbox container to register with the Session Service after startup.
+ */
+export interface SandboxRegistrationRequest {
+  /**
+   * Internal IP:port where the sandbox is listening (e.g., http://10.0.1.42:8080).
+   */
+  sandboxEndpoint: string;
+  /**
+   * ECS task ARN read from the task metadata endpoint. Must match the expectedTaskArn stored at RunTask time.
+   */
+  taskArn: string;
+}
+
+// --- sandbox-registration-response.json ---
+/**
+ * Response from Session Service after successful sandbox registration. Contains everything the sandbox needs to operate.
+ */
+export interface SandboxRegistrationResponse {
+  /**
+   * Session this sandbox is assigned to.
+   */
+  sessionId: string;
+  /**
+   * Workspace ID for artifact storage and file sync.
+   */
+  workspaceId: string;
+  /**
+   * URL of the Workspace Service for artifact uploads and file sync.
+   */
+  workspaceServiceUrl: string;
+  /**
+   * URL of the LLM Gateway for model calls.
+   */
+  llmGatewayEndpoint: string;
+  policyBundle?: PolicyBundle;
+}
+/**
+ * Policy bundle governing this session.
+ */
+
 // --- session-cancel-request.json ---
 /**
  * Request to cancel a session.
@@ -600,6 +647,10 @@ export interface SessionCreateRequest {
    * Capabilities the client supports (e.g., File.Read, Shell.Exec).
    */
   supportedCapabilities: string[];
+  /**
+   * Whether the sandbox has outbound internet access. Only applicable for cloud_sandbox sessions.
+   */
+  networkAccess?: "enabled" | "disabled";
 }
 
 // --- session-create-response.json ---
@@ -615,6 +666,22 @@ export interface SessionCreateResponse {
    * Resolved or created workspace ID.
    */
   workspaceId: string;
+  /**
+   * Current session status. For cloud_sandbox sessions, starts as SANDBOX_PROVISIONING.
+   */
+  status?:
+    | "SESSION_CREATED"
+    | "SESSION_RUNNING"
+    | "WAITING_FOR_LLM"
+    | "WAITING_FOR_TOOL"
+    | "WAITING_FOR_APPROVAL"
+    | "SESSION_PAUSED"
+    | "SESSION_COMPLETED"
+    | "SESSION_FAILED"
+    | "SESSION_CANCELLED"
+    | "SANDBOX_PROVISIONING"
+    | "SANDBOX_READY"
+    | "SANDBOX_TERMINATED";
   /**
    * Whether the client version is compatible with the backend.
    */
@@ -695,7 +762,10 @@ export interface Session {
     | "SESSION_PAUSED"
     | "SESSION_COMPLETED"
     | "SESSION_FAILED"
-    | "SESSION_CANCELLED";
+    | "SESSION_CANCELLED"
+    | "SANDBOX_PROVISIONING"
+    | "SANDBOX_READY"
+    | "SANDBOX_TERMINATED";
   /**
    * Session creation time.
    */
@@ -712,6 +782,26 @@ export interface Session {
    * Whether the name was auto-generated (true) or explicitly set by the user (false).
    */
   autoNamed?: boolean;
+  /**
+   * Internal IP:port of the sandbox container. Present only for cloud_sandbox sessions after registration.
+   */
+  sandboxEndpoint?: string;
+  /**
+   * ECS task ARN for sandbox lifecycle management. Present only for cloud_sandbox sessions.
+   */
+  taskArn?: string;
+  /**
+   * ECS task ARN stored at RunTask time. Used to validate sandbox registration.
+   */
+  expectedTaskArn?: string;
+  /**
+   * Whether the sandbox has outbound internet access. Present only for cloud_sandbox sessions.
+   */
+  networkAccess?: "enabled" | "disabled";
+  /**
+   * Last user interaction time. Used for idle timeout. Present only for cloud_sandbox sessions.
+   */
+  lastActivityAt?: string;
 }
 
 // --- task.json ---
@@ -972,6 +1062,70 @@ export interface WorkspaceCreateResponse {
    * When the workspace was created.
    */
   createdAt: string;
+}
+
+// --- workspace-file-list-response.json ---
+/**
+ * Response listing files in a cloud workspace.
+ */
+export interface WorkspaceFileListResponse {
+  /**
+   * List of files in the workspace.
+   */
+  files: {
+    /**
+     * Relative path within the workspace.
+     */
+    path: string;
+    /**
+     * File size in bytes.
+     */
+    size: number;
+    /**
+     * MIME content type of the file.
+     */
+    contentType?: string;
+    /**
+     * Last modification time.
+     */
+    lastModified: string;
+  }[];
+  /**
+   * Total number of files in the workspace.
+   */
+  totalFiles?: number;
+  /**
+   * Total size of all files in bytes.
+   */
+  totalSize?: number;
+}
+
+// --- workspace-file-upload-response.json ---
+/**
+ * Response after uploading files to a cloud workspace.
+ */
+export interface WorkspaceFileUploadResponse {
+  /**
+   * List of files that were uploaded.
+   */
+  files: {
+    /**
+     * Relative path of the uploaded file within the workspace.
+     */
+    path: string;
+    /**
+     * File size in bytes.
+     */
+    size: number;
+    /**
+     * MIME content type of the file.
+     */
+    contentType?: string;
+  }[];
+  /**
+   * Total size of all uploaded files in bytes.
+   */
+  totalSize?: number;
 }
 
 // --- workspace.json ---

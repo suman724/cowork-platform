@@ -29,7 +29,12 @@
         "LLM_BUDGET_EXCEEDED",
         "WORKSPACE_UPLOAD_FAILED",
         "RATE_LIMITED",
-        "INTERNAL_ERROR"
+        "INTERNAL_ERROR",
+        "CODE_EXECUTION_TIMEOUT",
+        "SANDBOX_UNREACHABLE",
+        "SANDBOX_PROVISION_FAILED",
+        "CONCURRENT_SESSION_LIMIT",
+        "SESSION_NOT_ACTIVE"
       ]
     },
     "message": {

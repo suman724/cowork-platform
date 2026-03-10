@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cowork.dev/schemas/sandbox-registration-response.json",
+  "title": "SandboxRegistrationResponse",
+  "description": "Response from Session Service after successful sandbox registration. Contains everything the sandbox needs to operate.",
+  "type": "object",
+  "required": ["sessionId", "workspaceId", "workspaceServiceUrl", "llmGatewayEndpoint"],
+  "properties": {
+    "sessionId": {
+      "type": "string",
+      "description": "Session this sandbox is assigned to."
+    },
+    "workspaceId": {
+      "type": "string",
+      "description": "Workspace ID for artifact storage and file sync."
+    },
+    "workspaceServiceUrl": {
+      "type": "string",
+      "description": "URL of the Workspace Service for artifact uploads and file sync."
+    },
+    "llmGatewayEndpoint": {
+      "type": "string",
+      "description": "URL of the LLM Gateway for model calls."
+    },
+    "policyBundle": {
+      "$ref": "policy-bundle.json",
+      "description": "Policy bundle governing this session."
+    }
+  },
+  "additionalProperties": false
+}

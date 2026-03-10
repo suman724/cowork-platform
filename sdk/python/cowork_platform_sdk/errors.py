@@ -218,6 +218,32 @@ class CodeExecutionTimeoutError(CoworkAPIError):
     __init__ = _make_init(ErrorCode.CODE_EXECUTION_TIMEOUT, "Code execution timed out", False)
 
 
+class SandboxUnreachableError(CoworkAPIError):
+    """503 — The sandbox container is unreachable."""
+
+    __init__ = _make_init(ErrorCode.SANDBOX_UNREACHABLE, "Sandbox unreachable", True)
+
+
+class SandboxProvisionFailedError(CoworkAPIError):
+    """500 — Sandbox provisioning failed (ECS RunTask or registration timeout)."""
+
+    __init__ = _make_init(ErrorCode.SANDBOX_PROVISION_FAILED, "Sandbox provisioning failed", False)
+
+
+class ConcurrentSessionLimitError(CoworkAPIError):
+    """409 — User has reached the maximum number of concurrent sandbox sessions."""
+
+    __init__ = _make_init(
+        ErrorCode.CONCURRENT_SESSION_LIMIT, "Concurrent session limit reached", False
+    )
+
+
+class SessionNotActiveError(CoworkAPIError):
+    """409 — The session is not in an active state for this operation."""
+
+    __init__ = _make_init(ErrorCode.SESSION_NOT_ACTIVE, "Session not active", False)
+
+
 # --- Code-to-class mapping ---
 
 _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
@@ -242,4 +268,8 @@ _CODE_TO_CLASS: dict[str, type[CoworkAPIError]] = {
     ErrorCode.RATE_LIMITED: RateLimitedError,
     ErrorCode.INTERNAL_ERROR: InternalError,
     ErrorCode.CODE_EXECUTION_TIMEOUT: CodeExecutionTimeoutError,
+    ErrorCode.SANDBOX_UNREACHABLE: SandboxUnreachableError,
+    ErrorCode.SANDBOX_PROVISION_FAILED: SandboxProvisionFailedError,
+    ErrorCode.CONCURRENT_SESSION_LIMIT: ConcurrentSessionLimitError,
+    ErrorCode.SESSION_NOT_ACTIVE: SessionNotActiveError,
 }
