@@ -23,6 +23,10 @@
     "llm_retry",
     "context_compacted",
     "session_completed",
-    "session_failed"
+    "session_failed",
+    "sandbox_provisioning",
+    "sandbox_ready",
+    "sandbox_terminated",
+    "sandbox_shutting_down"
   ]
 }

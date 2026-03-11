@@ -25,6 +25,11 @@ export const ErrorCode = {
   WORKSPACE_UPLOAD_FAILED: "WORKSPACE_UPLOAD_FAILED",
   RATE_LIMITED: "RATE_LIMITED",
   INTERNAL_ERROR: "INTERNAL_ERROR",
+  CODE_EXECUTION_TIMEOUT: "CODE_EXECUTION_TIMEOUT",
+  SANDBOX_UNREACHABLE: "SANDBOX_UNREACHABLE",
+  SANDBOX_PROVISION_FAILED: "SANDBOX_PROVISION_FAILED",
+  CONCURRENT_SESSION_LIMIT: "CONCURRENT_SESSION_LIMIT",
+  SESSION_NOT_ACTIVE: "SESSION_NOT_ACTIVE",
 } as const;
 
 export type ErrorCodeValue = (typeof ErrorCode)[keyof typeof ErrorCode];
@@ -33,6 +38,7 @@ export const RETRYABLE_ERROR_CODES: ReadonlySet<string> = new Set([
   ErrorCode.RATE_LIMITED,
   ErrorCode.INTERNAL_ERROR,
   ErrorCode.WORKSPACE_UPLOAD_FAILED,
+  ErrorCode.SANDBOX_UNREACHABLE,
 ]);
 
 // --- Capability Names ---
@@ -70,6 +76,10 @@ export const EventType = {
   CONTEXT_COMPACTED: "context_compacted",
   SESSION_COMPLETED: "session_completed",
   SESSION_FAILED: "session_failed",
+  SANDBOX_PROVISIONING: "sandbox_provisioning",
+  SANDBOX_READY: "sandbox_ready",
+  SANDBOX_TERMINATED: "sandbox_terminated",
+  SANDBOX_SHUTTING_DOWN: "sandbox_shutting_down",
 } as const;
 
 export type EventTypeValue = (typeof EventType)[keyof typeof EventType];
@@ -102,6 +112,9 @@ export const SessionStatus = {
   FAILED: "failed",
   CANCELLED: "cancelled",
   EXPIRED: "expired",
+  SANDBOX_PROVISIONING: "sandbox_provisioning",
+  SANDBOX_READY: "sandbox_ready",
+  SANDBOX_TERMINATED: "sandbox_terminated",
 } as const;
 
 export type SessionStatusValue =

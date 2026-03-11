@@ -14,6 +14,24 @@
       "type": "string",
       "description": "Resolved or created workspace ID."
     },
+    "status": {
+      "type": "string",
+      "enum": [
+        "SESSION_CREATED",
+        "SESSION_RUNNING",
+        "WAITING_FOR_LLM",
+        "WAITING_FOR_TOOL",
+        "WAITING_FOR_APPROVAL",
+        "SESSION_PAUSED",
+        "SESSION_COMPLETED",
+        "SESSION_FAILED",
+        "SESSION_CANCELLED",
+        "SANDBOX_PROVISIONING",
+        "SANDBOX_READY",
+        "SANDBOX_TERMINATED"
+      ],
+      "description": "Current session status. For cloud_sandbox sessions, starts as SANDBOX_PROVISIONING."
+    },
     "compatibilityStatus": {
       "type": "string",
       "enum": ["compatible", "incompatible"],

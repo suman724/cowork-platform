@@ -28,6 +28,10 @@ class ErrorCode:
     RATE_LIMITED: Final = "RATE_LIMITED"
     INTERNAL_ERROR: Final = "INTERNAL_ERROR"
     CODE_EXECUTION_TIMEOUT: Final = "CODE_EXECUTION_TIMEOUT"
+    SANDBOX_UNREACHABLE: Final = "SANDBOX_UNREACHABLE"
+    SANDBOX_PROVISION_FAILED: Final = "SANDBOX_PROVISION_FAILED"
+    CONCURRENT_SESSION_LIMIT: Final = "CONCURRENT_SESSION_LIMIT"
+    SESSION_NOT_ACTIVE: Final = "SESSION_NOT_ACTIVE"
 
 
 # --- Retryable Error Codes ---
@@ -38,6 +42,7 @@ RETRYABLE_ERROR_CODES: Final[frozenset[str]] = frozenset(
         ErrorCode.RATE_LIMITED,
         ErrorCode.INTERNAL_ERROR,
         ErrorCode.WORKSPACE_UPLOAD_FAILED,
+        ErrorCode.SANDBOX_UNREACHABLE,
     }
 )
 
@@ -92,6 +97,10 @@ class EventType:
     VERIFICATION_STARTED: Final = "verification_started"
     VERIFICATION_COMPLETED: Final = "verification_completed"
     PLAN_UPDATED: Final = "plan_updated"
+    SANDBOX_PROVISIONING: Final = "sandbox_provisioning"
+    SANDBOX_READY: Final = "sandbox_ready"
+    SANDBOX_TERMINATED: Final = "sandbox_terminated"
+    SANDBOX_SHUTTING_DOWN: Final = "sandbox_shutting_down"
 
 
 # --- Component Names ---
@@ -126,6 +135,9 @@ class SessionStatus:
     COMPLETED: Final = "SESSION_COMPLETED"
     FAILED: Final = "SESSION_FAILED"
     CANCELLED: Final = "SESSION_CANCELLED"
+    SANDBOX_PROVISIONING: Final = "SANDBOX_PROVISIONING"
+    SANDBOX_READY: Final = "SANDBOX_READY"
+    SANDBOX_TERMINATED: Final = "SANDBOX_TERMINATED"
 
 
 # --- Task Status ---

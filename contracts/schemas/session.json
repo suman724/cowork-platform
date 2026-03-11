@@ -38,7 +38,10 @@
         "SESSION_PAUSED",
         "SESSION_COMPLETED",
         "SESSION_FAILED",
-        "SESSION_CANCELLED"
+        "SESSION_CANCELLED",
+        "SANDBOX_PROVISIONING",
+        "SANDBOX_READY",
+        "SANDBOX_TERMINATED"
       ],
       "description": "Current session state machine state."
     },
@@ -61,6 +64,28 @@
       "type": "boolean",
       "default": true,
       "description": "Whether the name was auto-generated (true) or explicitly set by the user (false)."
+    },
+    "sandboxEndpoint": {
+      "type": "string",
+      "description": "Internal IP:port of the sandbox container. Present only for cloud_sandbox sessions after registration."
+    },
+    "taskArn": {
+      "type": "string",
+      "description": "ECS task ARN for sandbox lifecycle management. Present only for cloud_sandbox sessions."
+    },
+    "expectedTaskArn": {
+      "type": "string",
+      "description": "ECS task ARN stored at RunTask time. Used to validate sandbox registration."
+    },
+    "networkAccess": {
+      "type": "string",
+      "enum": ["enabled", "disabled"],
+      "description": "Whether the sandbox has outbound internet access. Present only for cloud_sandbox sessions."
+    },
+    "lastActivityAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last user interaction time. Used for idle timeout. Present only for cloud_sandbox sessions."
     }
   },
   "additionalProperties": false
