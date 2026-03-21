@@ -545,7 +545,7 @@ export interface ApprovalRule {
 
 // --- sandbox-registration-request.json ---
 /**
- * Request sent by a sandbox container to register with the Session Service after startup.
+ * Request sent by a sandbox worker task to register with the Session Service after picking up a session from SQS.
  */
 export interface SandboxRegistrationRequest {
   /**
@@ -553,9 +553,13 @@ export interface SandboxRegistrationRequest {
    */
   sandboxEndpoint: string;
   /**
-   * ECS task ARN read from the task metadata endpoint. Must match the expectedTaskArn stored at RunTask time.
+   * Single-use UUID token from the SQS message. Validated against the token stored at session creation.
    */
-  taskArn: string;
+  registrationToken?: string;
+  /**
+   * Deprecated. Previously used for ECS task ARN validation with RunTask model. Ignored by Session Service.
+   */
+  taskArn?: string;
 }
 
 // --- sandbox-registration-response.json ---
@@ -787,13 +791,9 @@ export interface Session {
    */
   sandboxEndpoint?: string;
   /**
-   * ECS task ARN for sandbox lifecycle management. Present only for cloud_sandbox sessions.
+   * Single-use UUID for sandbox self-registration validation. Generated at session creation, consumed at registration.
    */
-  taskArn?: string;
-  /**
-   * ECS task ARN stored at RunTask time. Used to validate sandbox registration.
-   */
-  expectedTaskArn?: string;
+  registrationToken?: string;
   /**
    * Whether the sandbox has outbound internet access. Present only for cloud_sandbox sessions.
    */

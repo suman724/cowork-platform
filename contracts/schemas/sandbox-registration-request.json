@@ -2,17 +2,21 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://cowork.dev/schemas/sandbox-registration-request.json",
   "title": "SandboxRegistrationRequest",
-  "description": "Request sent by a sandbox container to register with the Session Service after startup.",
+  "description": "Request sent by a sandbox worker task to register with the Session Service after picking up a session from SQS.",
   "type": "object",
-  "required": ["sandboxEndpoint", "taskArn"],
+  "required": ["sandboxEndpoint"],
   "properties": {
     "sandboxEndpoint": {
       "type": "string",
       "description": "Internal IP:port where the sandbox is listening (e.g., http://10.0.1.42:8080)."
     },
+    "registrationToken": {
+      "type": "string",
+      "description": "Single-use UUID token from the SQS message. Validated against the token stored at session creation."
+    },
     "taskArn": {
       "type": "string",
-      "description": "ECS task ARN read from the task metadata endpoint. Must match the expectedTaskArn stored at RunTask time."
+      "description": "Deprecated. Previously used for ECS task ARN validation with RunTask model. Ignored by Session Service."
     }
   },
   "additionalProperties": false
