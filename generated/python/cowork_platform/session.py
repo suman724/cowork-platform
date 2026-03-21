@@ -62,16 +62,10 @@ class Session(BaseModel):
             description="Internal IP:port of the sandbox container. Present only for cloud_sandbox sessions after registration."
         ),
     ] = None
-    taskArn: Annotated[
+    registrationToken: Annotated[
         str | None,
         Field(
-            description="ECS task ARN for sandbox lifecycle management. Present only for cloud_sandbox sessions."
-        ),
-    ] = None
-    expectedTaskArn: Annotated[
-        str | None,
-        Field(
-            description="ECS task ARN stored at RunTask time. Used to validate sandbox registration."
+            description="Single-use UUID for sandbox self-registration validation. Generated at session creation, consumed at registration."
         ),
     ] = None
     networkAccess: Annotated[

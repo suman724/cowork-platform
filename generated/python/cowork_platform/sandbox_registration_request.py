@@ -18,9 +18,15 @@ class SandboxRegistrationRequest(BaseModel):
             description="Internal IP:port where the sandbox is listening (e.g., http://10.0.1.42:8080)."
         ),
     ]
-    taskArn: Annotated[
-        str,
+    registrationToken: Annotated[
+        str | None,
         Field(
-            description="ECS task ARN read from the task metadata endpoint. Must match the expectedTaskArn stored at RunTask time."
+            description="Single-use UUID token from the SQS message. Validated against the token stored at session creation."
         ),
-    ]
+    ] = None
+    taskArn: Annotated[
+        str | None,
+        Field(
+            description="Deprecated. Previously used for ECS task ARN validation with RunTask model. Ignored by Session Service."
+        ),
+    ] = None
