@@ -261,7 +261,12 @@ export interface Capability {
     | "BackendTool.Invoke"
     | "LLM.Call"
     | "Search.Web"
-    | "Code.Execute";
+    | "Code.Execute"
+    | "Browser.Navigate"
+    | "Browser.Interact"
+    | "Browser.Extract"
+    | "Browser.Submit"
+    | "Browser.Download";
   /**
    * Path prefixes where file operations are permitted. Applies to File.Read, File.Write, File.Delete.
    */

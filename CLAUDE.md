@@ -47,11 +47,11 @@ All error responses across the system use one shape:
 { "code": "...", "message": "...", "retryable": false, "details": {} }
 ```
 
-Standard codes: `INVALID_REQUEST`, `UNAUTHORIZED`, `SESSION_NOT_FOUND`, `SESSION_EXPIRED`, `POLICY_BUNDLE_INVALID`, `POLICY_EXPIRED`, `CAPABILITY_DENIED`, `APPROVAL_REQUIRED`, `APPROVAL_DENIED`, `TOOL_NOT_FOUND`, `TOOL_EXECUTION_FAILED`, `TOOL_EXECUTION_TIMEOUT`, `FILE_NOT_FOUND`, `FILE_TOO_LARGE`, `PERMISSION_DENIED`, `LLM_GUARDRAIL_BLOCKED`, `LLM_BUDGET_EXCEEDED`, `WORKSPACE_UPLOAD_FAILED`, `RATE_LIMITED`, `INTERNAL_ERROR`
+Standard codes: `INVALID_REQUEST`, `UNAUTHORIZED`, `SESSION_NOT_FOUND`, `SESSION_EXPIRED`, `POLICY_BUNDLE_INVALID`, `POLICY_EXPIRED`, `CAPABILITY_DENIED`, `APPROVAL_REQUIRED`, `APPROVAL_DENIED`, `TOOL_NOT_FOUND`, `TOOL_EXECUTION_FAILED`, `TOOL_EXECUTION_TIMEOUT`, `FILE_NOT_FOUND`, `FILE_TOO_LARGE`, `PERMISSION_DENIED`, `LLM_GUARDRAIL_BLOCKED`, `LLM_BUDGET_EXCEEDED`, `WORKSPACE_UPLOAD_FAILED`, `RATE_LIMITED`, `INTERNAL_ERROR`, `BROWSER_LAUNCH_FAILED`, `BROWSER_DOMAIN_BLOCKED`, `BROWSER_DOMAIN_DENIED`, `BROWSER_NAVIGATION_FAILED`, `BROWSER_AUTH_REQUIRED`, `BROWSER_ELEMENT_NOT_FOUND`, `BROWSER_ELEMENT_NOT_INTERACTABLE`, `BROWSER_WAIT_TIMEOUT`, `BROWSER_DOWNLOAD_FAILED`, `BROWSER_DOWNLOAD_TIMEOUT`, `BROWSER_PATH_DENIED`, `BROWSER_SENSITIVE_DENIED`, `BROWSER_SUBMIT_DENIED`, `BROWSER_CRASHED`
 
 ## Shared Enums
 
-Event names: `session_created`, `session_started`, `step_started`, `step_completed`, `step_limit_approaching`, `text_chunk`, `llm_request_started`, `llm_request_completed`, `tool_requested`, `tool_completed`, `approval_requested`, `approval_resolved`, `policy_expired`, `task_completed`, `task_failed`, `session_completed`, `session_failed`
+Event names: `session_created`, `session_started`, `step_started`, `step_completed`, `step_limit_approaching`, `text_chunk`, `llm_request_started`, `llm_request_completed`, `tool_requested`, `tool_completed`, `approval_requested`, `approval_resolved`, `policy_expired`, `task_completed`, `task_failed`, `session_completed`, `session_failed`, `browser_started`, `browser_stopped`, `browser_page_state`, `browser_auth_required`, `browser_takeover_started`, `browser_takeover_ended`, `browser_domain_approved`
 
 Component values: `DesktopApp`, `LocalAgentHost`, `LocalToolRuntime`, `LocalPolicyEnforcer`, `LocalApprovalUI`, `SessionService`, `LLMGateway`, `PolicyService`, `ApprovalService`, `WorkspaceService`, `AuditService`, `TelemetryService`, `BackendToolService`
 
@@ -60,6 +60,10 @@ Component values: `DesktopApp`, `LocalAgentHost`, `LocalToolRuntime`, `LocalPoli
 Desktop App → Local Agent Host: `CreateSession`, `StartTask`, `CancelTask`, `ResumeSession`, `GetSessionState`, `GetPatchPreview`, `ApproveAction`, `Shutdown`
 
 Local Agent Host → Desktop App (notifications): `SessionEvent`
+
+## Capabilities
+
+`File.Read`, `File.Write`, `File.Delete`, `Shell.Exec`, `Network.Http`, `Workspace.Upload`, `BackendTool.Invoke`, `LLM.Call`, `Search.Web`, `Code.Execute`, `Browser.Navigate`, `Browser.Interact`, `Browser.Extract`, `Browser.Submit`, `Browser.Download`
 
 ---
 

@@ -28,6 +28,13 @@
     "sandbox_provisioning",
     "sandbox_ready",
     "sandbox_terminated",
-    "sandbox_shutting_down"
+    "sandbox_shutting_down",
+    "browser_started",
+    "browser_stopped",
+    "browser_page_state",
+    "browser_auth_required",
+    "browser_takeover_started",
+    "browser_takeover_ended",
+    "browser_domain_approved"
   ]
 }

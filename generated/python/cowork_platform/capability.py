@@ -24,6 +24,11 @@ class Capability(BaseModel):
             "LLM.Call",
             "Search.Web",
             "Code.Execute",
+            "Browser.Navigate",
+            "Browser.Interact",
+            "Browser.Extract",
+            "Browser.Submit",
+            "Browser.Download",
         ],
         Field(description="Capability identifier."),
     ]
