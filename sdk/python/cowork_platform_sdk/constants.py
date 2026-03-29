@@ -77,6 +77,7 @@ class EventType:
     LLM_REQUEST_COMPLETED: Final = "llm_request_completed"
     TOOL_REQUESTED: Final = "tool_requested"
     TOOL_COMPLETED: Final = "tool_completed"
+    TOOL_OUTPUT_CHUNK: Final = "tool_output_chunk"
     APPROVAL_REQUESTED: Final = "approval_requested"
     APPROVAL_RESOLVED: Final = "approval_resolved"
     POLICY_EXPIRED: Final = "policy_expired"

@@ -15,6 +15,7 @@
     "llm_request_completed",
     "tool_requested",
     "tool_completed",
+    "tool_output_chunk",
     "approval_requested",
     "approval_resolved",
     "policy_expired",

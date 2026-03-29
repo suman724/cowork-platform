@@ -67,6 +67,7 @@ export const EventType = {
   LLM_REQUEST_COMPLETED: "llm_request_completed",
   TOOL_REQUESTED: "tool_requested",
   TOOL_COMPLETED: "tool_completed",
+  TOOL_OUTPUT_CHUNK: "tool_output_chunk",
   APPROVAL_REQUESTED: "approval_requested",
   APPROVAL_RESOLVED: "approval_resolved",
   POLICY_EXPIRED: "policy_expired",
