@@ -32,6 +32,20 @@ class ErrorCode:
     SANDBOX_PROVISION_FAILED: Final = "SANDBOX_PROVISION_FAILED"
     CONCURRENT_SESSION_LIMIT: Final = "CONCURRENT_SESSION_LIMIT"
     SESSION_NOT_ACTIVE: Final = "SESSION_NOT_ACTIVE"
+    BROWSER_LAUNCH_FAILED: Final = "BROWSER_LAUNCH_FAILED"
+    BROWSER_DOMAIN_BLOCKED: Final = "BROWSER_DOMAIN_BLOCKED"
+    BROWSER_DOMAIN_DENIED: Final = "BROWSER_DOMAIN_DENIED"
+    BROWSER_NAVIGATION_FAILED: Final = "BROWSER_NAVIGATION_FAILED"
+    BROWSER_AUTH_REQUIRED: Final = "BROWSER_AUTH_REQUIRED"
+    BROWSER_ELEMENT_NOT_FOUND: Final = "BROWSER_ELEMENT_NOT_FOUND"
+    BROWSER_ELEMENT_NOT_INTERACTABLE: Final = "BROWSER_ELEMENT_NOT_INTERACTABLE"
+    BROWSER_WAIT_TIMEOUT: Final = "BROWSER_WAIT_TIMEOUT"
+    BROWSER_DOWNLOAD_FAILED: Final = "BROWSER_DOWNLOAD_FAILED"
+    BROWSER_DOWNLOAD_TIMEOUT: Final = "BROWSER_DOWNLOAD_TIMEOUT"
+    BROWSER_PATH_DENIED: Final = "BROWSER_PATH_DENIED"
+    BROWSER_SENSITIVE_DENIED: Final = "BROWSER_SENSITIVE_DENIED"
+    BROWSER_SUBMIT_DENIED: Final = "BROWSER_SUBMIT_DENIED"
+    BROWSER_CRASHED: Final = "BROWSER_CRASHED"
 
 
 # --- Retryable Error Codes ---
@@ -61,6 +75,11 @@ class CapabilityName:
     LLM_CALL: Final = "LLM.Call"
     SEARCH_WEB: Final = "Search.Web"
     CODE_EXECUTE: Final = "Code.Execute"
+    BROWSER_NAVIGATE: Final = "Browser.Navigate"
+    BROWSER_INTERACT: Final = "Browser.Interact"
+    BROWSER_EXTRACT: Final = "Browser.Extract"
+    BROWSER_SUBMIT: Final = "Browser.Submit"
+    BROWSER_DOWNLOAD: Final = "Browser.Download"
 
 
 # --- Event Types ---
@@ -102,6 +121,13 @@ class EventType:
     SANDBOX_READY: Final = "sandbox_ready"
     SANDBOX_TERMINATED: Final = "sandbox_terminated"
     SANDBOX_SHUTTING_DOWN: Final = "sandbox_shutting_down"
+    BROWSER_STARTED: Final = "browser_started"
+    BROWSER_STOPPED: Final = "browser_stopped"
+    BROWSER_PAGE_STATE: Final = "browser_page_state"
+    BROWSER_AUTH_REQUIRED: Final = "browser_auth_required"
+    BROWSER_TAKEOVER_STARTED: Final = "browser_takeover_started"
+    BROWSER_TAKEOVER_ENDED: Final = "browser_takeover_ended"
+    BROWSER_DOMAIN_APPROVED: Final = "browser_domain_approved"
 
 
 # --- Component Names ---
